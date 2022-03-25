@@ -1,0 +1,3632 @@
+ **********************************************
+ **** Specfem 3-D Solver - MPI version f90 ****
+ **********************************************
+
+ Running Git package version of the code: v2.0.2-3292-g7ab24140
+ which is Git commit 7ab2414052ea4f35752821a1e137ac94c9aa7b59
+ dating From Date:   Sat Jul 3 01:19:44 2021 +0200
+
+
+
+
+ There are           20  MPI processes
+ Processes are numbered from 0 to           19
+
+ There is a total of           20  slices
+
+  NDIM =            3
+
+  NGLLX =            5
+  NGLLY =            5
+  NGLLZ =            5
+
+ using single precision for the calculations
+
+ smallest and largest possible floating-point numbers are:    1.17549435E-38   3.40282347E+38
+
+ velocity model:   default 
+
+ Reading mesh databases...
+   reads binary mesh files: proc***_external_mesh.bin
+   from directory         : ./DATABASES_MPI
+   done
+
+ total acoustic elements    :           0
+ total elastic elements     :      823200
+ total poroelastic elements :           0
+
+ Mesh resolution:
+
+ ********
+ minimum and maximum number of elements
+ and points in the CUBIT + SCOTCH mesh:
+
+ NSPEC_global_min =        41160
+ NSPEC_global_max =        41160
+ NSPEC_global_max / NSPEC_global_min imbalance =    1.00000000      =    0.00000000      %
+ NSPEC_global_sum =       823200
+
+ NGLOB_global_min =      2693581
+ NGLOB_global_max =      2693581
+ NGLOB_global_max / NGLOB_global_min imbalance =    1.00000000      =    0.00000000      %
+ NGLOB_global_sum =     53871620
+
+ If you have elements of a single type (all acoustic, all elastic, all poroelastic, and without CPML)
+ in the whole mesh, then there should be no significant imbalance in the above numbers.
+ Otherwise, it is normal to have imbalance in elements and points because the domain decomposer
+ compensates for the different cost of different elements by partitioning them unevenly among processes.
+ ********
+
+
+ ********
+ Model: P   velocity min,max =    400.000000       2760.00000    
+ Model: S   velocity min,max =    200.000000       920.000000    
+
+ Model: Poisson's ratio min,max =   0.333333343      0.437500000    
+ ********
+
+ *********************************************
+ *** Verification of simulation parameters ***
+ *********************************************
+
+ *** Xmin and Xmax of the model =   -50.0000000       50.0000000    
+ *** Ymin and Ymax of the model =   -70.0000000       60.0000000    
+ *** Zmin and Zmax of the model =   -50.0000000       0.00000000    
+
+ *** Max GLL point distance =   0.872872353    
+ *** Min GLL point distance =    8.80966187E-02
+ *** Max/min ratio =    9.90812588    
+
+ *** Max element size =    2.66666698    
+ *** Min element size =   0.510200500    
+ *** Max/min ratio =    5.22670412    
+
+ *** Minimum period resolved =    5.41667920E-03
+ *** Maximum suggested time step =    1.59595329E-05
+
+ *** for DT :    1.5000000000000000E-005
+ *** Max stability for wave velocities =   0.469938576    
+
+ Elapsed time for checking mesh resolution in seconds =    6.0072171000000001E-002
+ saving VTK files for Courant number and minimum period
+
+
+ ******************************************
+ There is a total of           20  slices
+ ******************************************
+
+
+ kd-tree:
+   total data points:        41160
+   theoretical   number of nodes:        82315
+                tree memory size:    2.51205444     MB
+   actual        number of nodes:        82319
+                tree memory size:    2.51217651     MB
+   maximum depth   :           17
+   creation timing :    1.23248100E-02 (s)
+
+
+ sources:           1
+
+ ********************
+  locating sources
+ ********************
+
+ reading source information from ./DATA/FORCESOLUTION file
+
+ no UTM projection
+
+
+ source #            1
+   source located in slice            9
+                  in element        40180
+                  in elastic domain
+
+   using force point source: 
+     xi coordinate of source in that element:    1.0000000000000000     
+     eta coordinate of source in that element:  -0.53846204633536077     
+     gamma coordinate of source in that element:    1.0000000000000000     
+
+     component of direction vector in East direction:    0.00000000    
+     component of direction vector in North direction:    0.00000000    
+     component of direction vector in Vertical direction:   -1.00000000    
+
+     nu1 =    1.0000000000000000        0.0000000000000000        0.0000000000000000     
+     nu2 =    0.0000000000000000        1.0000000000000000        0.0000000000000000     
+     nu3 =    0.0000000000000000        0.0000000000000000        1.0000000000000000     
+
+     at (x,y,z) coordinates =    0.0000000000000000       -10.000000000000000        0.0000000000000000     
+
+   source time function:
+     using Ricker source time function
+     using a source of dominant frequency    80.000000000000000     
+     t0_ricker =    1.4999999999999999E-002
+     Ricker frequency:    80.000000000000000       Hz
+
+     time shift:    0.0000000000000000       seconds
+
+   magnitude of the source:
+     factor =    1.0000000000000000     
+
+   original (requested) position of the source:
+
+             latitude:   -10.000000000000000     
+            longitude:    0.0000000000000000     
+
+                x:    0.0000000000000000     
+                y:   -10.000000000000000     
+            depth:    0.0000000000000000       km
+   topo elevation:    0.0000000000000000     
+
+   position of the source that will be used:
+
+                x:    0.0000000000000000     
+                y:   -10.000000000000000     
+            depth:    0.0000000000000000       km
+                z:    0.0000000000000000     
+
+   error in location of the source:    0.00000000      m
+
+
+
+ maximum error in location of the sources:    0.00000000      m
+
+
+ Elapsed time for detection of sources in seconds =    8.0711549999961107E-003
+
+ End of source detection - done
+
+
+ printing the source-time function
+
+ receivers:
+
+ there are           10  stations in file ./DATA/STATIONS
+ saving           10  stations inside the model in file ./DATA/STATIONS_FILTERED
+ excluding            0  stations located outside the model
+
+
+ Total number of receivers =           10
+
+
+ ********************
+  locating receivers
+ ********************
+
+ reading receiver information from ./DATA/STATIONS_FILTERED file
+
+
+ station #            1     MY    X1
+      original latitude:   -7.00000000    
+      original longitude:    0.00000000    
+      original x:    0.00000000    
+      original y:   -7.00000000    
+      original depth:    0.00000000      m
+      horizontal distance:    3.00000003E-03
+      target x, y, z:    0.00000000      -7.00000000       0.00000000    
+      closest estimate found:    0.00000000      m away
+
+      receiver located in slice            9
+                       in element        40327
+                       in elastic domain
+      at coordinates: 
+      xi    =    1.0000000000000000     
+      eta   =   0.38461496138720008     
+      gamma =    1.0000000000000000     
+      rotation matrix: 
+      nu1 =    1.00000000       0.00000000       0.00000000    
+      nu2 =    0.00000000       1.00000000       0.00000000    
+      nu3 =    0.00000000       0.00000000       1.00000000    
+      x:    0.0000000000000000     
+      y:   -7.0000000000000000     
+      depth:    0.0000000000000000       m
+      z:    0.0000000000000000     
+
+
+
+ station #            2     MY    X2
+      original latitude:   -4.00000000    
+      original longitude:    0.00000000    
+      original x:    0.00000000    
+      original y:   -4.00000000    
+      original depth:    0.00000000      m
+      horizontal distance:    6.00000005E-03
+      target x, y, z:    0.00000000      -4.00000000       0.00000000    
+      closest estimate found:    0.00000000      m away
+
+      receiver located in slice            9
+                       in element        40523
+                       in elastic domain
+      at coordinates: 
+      xi    =    1.0000000000000000     
+      eta   =  -0.69230794624467384     
+      gamma =    1.0000000000000000     
+      rotation matrix: 
+      nu1 =    1.00000000       0.00000000       0.00000000    
+      nu2 =    0.00000000       1.00000000       0.00000000    
+      nu3 =    0.00000000       0.00000000       1.00000000    
+      x:    0.0000000000000000     
+      y:   -4.0000000000000000     
+      depth:    0.0000000000000000       m
+      z:    0.0000000000000000     
+
+
+
+ station #            3     MY    X3
+      original latitude:   -1.00000000    
+      original longitude:    0.00000000    
+      original x:    0.00000000    
+      original y:   -1.00000000    
+      original depth:    0.00000000      m
+      horizontal distance:    8.99999961E-03
+      target x, y, z:    0.00000000      -1.00000000       0.00000000    
+      closest estimate found:    0.00000000      m away
+
+      receiver located in slice            9
+                       in element        40670
+                       in elastic domain
+      at coordinates: 
+      xi    =    1.0000000000000000     
+      eta   =   0.23076923076923075     
+      gamma =    1.0000000000000000     
+      rotation matrix: 
+      nu1 =    1.00000000       0.00000000       0.00000000    
+      nu2 =    0.00000000       1.00000000       0.00000000    
+      nu3 =    0.00000000       0.00000000       1.00000000    
+      x:    0.0000000000000000     
+      y:   -1.0000000000000000     
+      depth:    0.0000000000000000       m
+      z:    0.0000000000000000     
+
+
+
+ station #            4     MY    X4
+      original latitude:    2.00000000    
+      original longitude:    0.00000000    
+      original x:    0.00000000    
+      original y:    2.00000000    
+      original depth:    0.00000000      m
+      horizontal distance:    1.20000001E-02
+      target x, y, z:    0.00000000       2.00000000       0.00000000    
+      closest estimate found:    0.00000000      m away
+
+      receiver located in slice            9
+                       in element        40866
+                       in elastic domain
+      at coordinates: 
+      xi    =    1.0000000000000000     
+      eta   =  -0.84615371918537319     
+      gamma =    1.0000000000000000     
+      rotation matrix: 
+      nu1 =    1.00000000       0.00000000       0.00000000    
+      nu2 =    0.00000000       1.00000000       0.00000000    
+      nu3 =    0.00000000       0.00000000       1.00000000    
+      x:    0.0000000000000000     
+      y:    2.0000000000000000     
+      depth:    0.0000000000000000       m
+      z:    0.0000000000000000     
+
+
+
+ station #            5     MY    X5
+      original latitude:    5.00000000    
+      original longitude:    0.00000000    
+      original x:    0.00000000    
+      original y:    5.00000000    
+      original depth:    0.00000000      m
+      horizontal distance:    1.49999997E-02
+      target x, y, z:    0.00000000       5.00000000       0.00000000    
+      closest estimate found:    0.00000000      m away
+
+      receiver located in slice            9
+                       in element        41013
+                       in elastic domain
+      at coordinates: 
+      xi    =    1.0000000000000000     
+      eta   =    7.6922992277439969E-002
+      gamma =    1.0000000000000000     
+      rotation matrix: 
+      nu1 =    1.00000000       0.00000000       0.00000000    
+      nu2 =    0.00000000       1.00000000       0.00000000    
+      nu3 =    0.00000000       0.00000000       1.00000000    
+      x:    0.0000000000000000     
+      y:    5.0000000000000000     
+      depth:    0.0000000000000000       m
+      z:    0.0000000000000000     
+
+
+
+ station #            6     MY    X6
+      original latitude:    8.00000000    
+      original longitude:    0.00000000    
+      original x:    0.00000000    
+      original y:    8.00000000    
+      original depth:    0.00000000      m
+      horizontal distance:    1.79999992E-02
+      target x, y, z:    0.00000000       8.00000000       0.00000000    
+      closest estimate found:    0.00000000      m away
+
+      receiver located in slice            9
+                       in element        41160
+                       in elastic domain
+      at coordinates: 
+      xi    =    1.0000000000000000     
+      eta   =    1.0000000000000000     
+      gamma =    1.0000000000000000     
+      rotation matrix: 
+      nu1 =    1.00000000       0.00000000       0.00000000    
+      nu2 =    0.00000000       1.00000000       0.00000000    
+      nu3 =    0.00000000       0.00000000       1.00000000    
+      x:    0.0000000000000000     
+      y:    8.0000000000000000     
+      depth:    0.0000000000000000       m
+      z:    0.0000000000000000     
+
+
+
+ station #            7     MY    X7
+      original latitude:    11.0000000    
+      original longitude:    0.00000000    
+      original x:    0.00000000    
+      original y:    11.0000000    
+      original depth:    0.00000000      m
+      horizontal distance:    2.09999997E-02
+      target x, y, z:    0.00000000       11.0000000       0.00000000    
+      closest estimate found:    0.00000000      m away
+
+      receiver located in slice           13
+                       in element        39886
+                       in elastic domain
+      at coordinates: 
+      xi    =    1.0000000000000000     
+      eta   =   -7.6923076923076927E-002
+      gamma =    1.0000000000000000     
+      rotation matrix: 
+      nu1 =    1.00000000       0.00000000       0.00000000    
+      nu2 =    0.00000000       1.00000000       0.00000000    
+      nu3 =    0.00000000       0.00000000       1.00000000    
+      x:    0.0000000000000000     
+      y:    11.000000000000000     
+      depth:    0.0000000000000000       m
+      z:    0.0000000000000000     
+
+
+
+ station #            8     MY    X8
+      original latitude:    14.0000000    
+      original longitude:    0.00000000    
+      original x:    0.00000000    
+      original y:    14.0000000    
+      original depth:    0.00000000      m
+      horizontal distance:    2.40000002E-02
+      target x, y, z:    0.00000000       14.0000000       0.00000000    
+      closest estimate found:    0.00000000      m away
+
+      receiver located in slice           13
+                       in element        40033
+                       in elastic domain
+      at coordinates: 
+      xi    =    1.0000000000000000     
+      eta   =   0.84615401544512003     
+      gamma =    1.0000000000000000     
+      rotation matrix: 
+      nu1 =    1.00000000       0.00000000       0.00000000    
+      nu2 =    0.00000000       1.00000000       0.00000000    
+      nu3 =    0.00000000       0.00000000       1.00000000    
+      x:    0.0000000000000000     
+      y:    14.000000000000000     
+      depth:    0.0000000000000000       m
+      z:    0.0000000000000000     
+
+
+
+ station #            9     MY    X9
+      original latitude:    17.0000000    
+      original longitude:    0.00000000    
+      original x:    0.00000000    
+      original y:    17.0000000    
+      original depth:    0.00000000      m
+      horizontal distance:    2.70000007E-02
+      target x, y, z:    0.00000000       17.0000000       0.00000000    
+      closest estimate found:    0.00000000      m away
+
+      receiver located in slice           13
+                       in element        40229
+                       in elastic domain
+      at coordinates: 
+      xi    =    1.0000000000000000     
+      eta   =  -0.23076787643903934     
+      gamma =    1.0000000000000000     
+      rotation matrix: 
+      nu1 =    1.00000000       0.00000000       0.00000000    
+      nu2 =    0.00000000       1.00000000       0.00000000    
+      nu3 =    0.00000000       0.00000000       1.00000000    
+      x:    0.0000000000000000     
+      y:    17.000000000000000     
+      depth:    0.0000000000000000       m
+      z:    0.0000000000000000     
+
+
+
+ station #           10     MY    X10
+      original latitude:    20.0000000    
+      original longitude:    0.00000000    
+      original x:    0.00000000    
+      original y:    20.0000000    
+      original depth:    0.00000000      m
+      horizontal distance:    2.99999993E-02
+      target x, y, z:    0.00000000       20.0000000       0.00000000    
+      closest estimate found:    3.55271368E-15  m away
+
+      receiver located in slice           13
+                       in element        40376
+                       in elastic domain
+      at coordinates: 
+      xi    =    1.0000000000000000     
+      eta   =   0.69230803089023640     
+      gamma =    1.0000000000000000     
+      rotation matrix: 
+      nu1 =    1.00000000       0.00000000       0.00000000    
+      nu2 =    0.00000000       1.00000000       0.00000000    
+      nu3 =    0.00000000       0.00000000       1.00000000    
+      x:    0.0000000000000000     
+      y:    19.999999999999996     
+      depth:    0.0000000000000000       m
+      z:    0.0000000000000000     
+
+
+ maximum error in location of all the receivers:    3.55271368E-15  m
+
+ Elapsed time for receiver detection in seconds =    9.0036452999996186E-002
+
+ End of receiver detection - done
+
+ source arrays:
+   number of sources is            1
+   size of source array                 =    1.43051147E-03 MB
+                                        =    1.39698386E-06 GB
+
+ seismograms:
+   seismograms written by all processes
+
+   Total number of simulation steps (NSTEP)                       =        20000
+   writing out seismograms at every NTSTEP_BETWEEN_OUTPUT_SEISMOS =         2000
+   number of subsampling steps for seismograms (subsamp_seismos)  =            1
+   Total number of samples for seismograms                        =        20000
+
+   maximum number of local receivers is            6  in slice            9
+   size of maximum seismogram array       =   0.411987305     MB
+                                          =    4.02331352E-04 GB
+
+ found a total of           10  receivers in all the slices
+
+
+ Simulation setup:
+
+   no acoustic simulation
+ incorporating elastic simulation
+   no poroelastic simulation
+
+ incorporating attenuation using            3  standard linear solids
+   not using attenuation from Olsen et al.
+   no anisotropy
+   no oceans
+   no gravity
+   no movie simulation
+
+
+ preparing mass matrices
+ preparing constants
+ preparing wavefields
+ preparing fault simulation
+   no dynamic faults
+   no kinematic faults
+   no fault simulation
+ preparing attenuation
+   The code uses a constant Q quality factor, but approximated
+   based on a series of Zener standard linear solids (SLS).
+   Approximation is performed in the following frequency band:
+
+   number of SLS bodies:            3
+
+   Reference frequency of anelastic model (Hz):    80.0000000    
+                                    period (s):    1.25000002E-02
+   Attenuation frequency band min/max (Hz):   3.31613111     /   186.479752    
+               period band    min/max (s) :   5.36251254E-03 /  0.301556230    
+   Logarithmic center frequency (Hz):   24.8674736    
+                      period     (s):   4.02131714E-02
+
+ preparing gravity
+   no gravity simulation
+ preparing Stacey absorbing boundaries
+ preparing optimized arrays
+   number of regular shaped elements  :            0
+   number of irregular shaped elements:        41160
+   fused array done
+   bandwidth test (STREAM TRIAD): 
+      memory accesses =    92.4767609     MB
+      timing  min/max =    2.67855600E-02 s /    3.67114581E-02 s
+      timing      avg =    3.05349361E-02 s
+      bandwidth       =    2.95757413     GB/s
+
+
+ Elapsed time for preparing timerun in seconds =    1.5672949009999968     
+
+ ************
+  time loop
+ ************
+               scheme:         Newmark
+
+            time step:    1.49999996E-05  s
+ number of time steps:        20000
+ total simulated time:   0.300000012      seconds
+ start time:  -1.49999997E-02  seconds
+
+ All processes are synchronized before the time loop
+
+ Starting time iteration loop...
+
+ Time step #            5
+ Time:   -1.49400001E-02  seconds
+ Elapsed time in seconds =    4.0735190580000022     
+ Elapsed time in hh:mm:ss =      0 h 00 m 04 s
+ Mean elapsed time per time step in seconds =   0.814703822    
+ Max norm displacement vector U in all slices (m) =    3.86729053E-14
+ Time steps done =            5  out of        20000
+ Time steps remaining =        19995
+ Estimated remaining time in seconds =    16290.0029    
+ Estimated remaining time in hh:mm:ss =      4 h 31 m 30 s
+ Estimated total run time in seconds =    16294.0762    
+ Estimated total run time in hh:mm:ss =      4 h 31 m 34 s
+ We have done    2.50000004E-02 % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:24
+ ************************************************************
+ **** BEWARE: the above time estimates are not very reliable
+ **** because fewer than 100 iterations have been performed
+ ************************************************************
+
+ Time step #          100
+ Time:   -1.35150002E-02  seconds
+ Elapsed time in seconds =    90.947952519000012     
+ Elapsed time in hh:mm:ss =      0 h 01 m 30 s
+ Mean elapsed time per time step in seconds =   0.909479499    
+ Max norm displacement vector U in all slices (m) =    6.60129330E-12
+ Time steps done =          100  out of        20000
+ Time steps remaining =        19900
+ Estimated remaining time in seconds =    18098.6426    
+ Estimated remaining time in hh:mm:ss =      5 h 01 m 38 s
+ Estimated total run time in seconds =    18189.5898    
+ Estimated total run time in hh:mm:ss =      5 h 03 m 09 s
+ We have done   0.500000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:55
+
+ Time step #          200
+ Time:   -1.20150000E-02  seconds
+ Elapsed time in seconds =    179.01591059000000     
+ Elapsed time in hh:mm:ss =      0 h 02 m 59 s
+ Mean elapsed time per time step in seconds =   0.895079553    
+ Max norm displacement vector U in all slices (m) =    5.99570463E-11
+ Time steps done =          200  out of        20000
+ Time steps remaining =        19800
+ Estimated remaining time in seconds =    17722.5742    
+ Estimated remaining time in hh:mm:ss =      4 h 55 m 22 s
+ Estimated total run time in seconds =    17901.5918    
+ Estimated total run time in hh:mm:ss =      4 h 58 m 21 s
+ We have done    1.00000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:50
+
+ Time step #          300
+ Time:   -1.05149997E-02  seconds
+ Elapsed time in seconds =    266.14397411800002     
+ Elapsed time in hh:mm:ss =      0 h 04 m 26 s
+ Mean elapsed time per time step in seconds =   0.887146592    
+ Max norm displacement vector U in all slices (m) =    3.99082073E-10
+ Time steps done =          300  out of        20000
+ Time steps remaining =        19700
+ Estimated remaining time in seconds =    17476.7871    
+ Estimated remaining time in hh:mm:ss =      4 h 51 m 16 s
+ Estimated total run time in seconds =    17742.9316    
+ Estimated total run time in hh:mm:ss =      4 h 55 m 42 s
+ We have done    1.50000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:47
+
+ Time step #          400
+ Time:   -9.01500043E-03  seconds
+ Elapsed time in seconds =    354.69250017600001     
+ Elapsed time in hh:mm:ss =      0 h 05 m 54 s
+ Mean elapsed time per time step in seconds =   0.886731267    
+ Max norm displacement vector U in all slices (m) =    1.90763050E-09
+ Time steps done =          400  out of        20000
+ Time steps remaining =        19600
+ Estimated remaining time in seconds =    17379.9316    
+ Estimated remaining time in hh:mm:ss =      4 h 49 m 39 s
+ Estimated total run time in seconds =    17734.6250    
+ Estimated total run time in hh:mm:ss =      4 h 55 m 34 s
+ We have done    2.00000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:48
+
+ Time step #          500
+ Time:   -7.51500018E-03  seconds
+ Elapsed time in seconds =    442.81937535500003     
+ Elapsed time in hh:mm:ss =      0 h 07 m 22 s
+ Mean elapsed time per time step in seconds =   0.885638773    
+ Max norm displacement vector U in all slices (m) =    6.40249231E-09
+ Time steps done =          500  out of        20000
+ Time steps remaining =        19500
+ Estimated remaining time in seconds =    17269.9551    
+ Estimated remaining time in hh:mm:ss =      4 h 47 m 49 s
+ Estimated total run time in seconds =    17712.7754    
+ Estimated total run time in hh:mm:ss =      4 h 55 m 12 s
+ We have done    2.50000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:47
+
+ Time step #          600
+ Time:   -6.01499993E-03  seconds
+ Elapsed time in seconds =    530.50178209700005     
+ Elapsed time in hh:mm:ss =      0 h 08 m 50 s
+ Mean elapsed time per time step in seconds =   0.884169638    
+ Max norm displacement vector U in all slices (m) =    1.44288723E-08
+ Time steps done =          600  out of        20000
+ Time steps remaining =        19400
+ Estimated remaining time in seconds =    17152.8906    
+ Estimated remaining time in hh:mm:ss =      4 h 45 m 52 s
+ Estimated total run time in seconds =    17683.3926    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 43 s
+ We have done    3.00000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #          700
+ Time:   -4.51500015E-03  seconds
+ Elapsed time in seconds =    617.99812039599999     
+ Elapsed time in hh:mm:ss =      0 h 10 m 17 s
+ Mean elapsed time per time step in seconds =   0.882854462    
+ Max norm displacement vector U in all slices (m) =    1.93969800E-08
+ Time steps done =          700  out of        20000
+ Time steps remaining =        19300
+ Estimated remaining time in seconds =    17039.0918    
+ Estimated remaining time in hh:mm:ss =      4 h 43 m 59 s
+ Estimated total run time in seconds =    17657.0898    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 17 s
+ We have done    3.50000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #          800
+ Time:   -3.01499991E-03  seconds
+ Elapsed time in seconds =    705.18152235699995     
+ Elapsed time in hh:mm:ss =      0 h 11 m 45 s
+ Mean elapsed time per time step in seconds =   0.881476879    
+ Max norm displacement vector U in all slices (m) =    7.95148836E-09
+ Time steps done =          800  out of        20000
+ Time steps remaining =        19200
+ Estimated remaining time in seconds =    16924.3574    
+ Estimated remaining time in hh:mm:ss =      4 h 42 m 04 s
+ Estimated total run time in seconds =    17629.5371    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 49 s
+ We have done    4.00000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #          900
+ Time:   -1.51500001E-03  seconds
+ Elapsed time in seconds =    794.80255951799995     
+ Elapsed time in hh:mm:ss =      0 h 13 m 14 s
+ Mean elapsed time per time step in seconds =   0.883113980    
+ Max norm displacement vector U in all slices (m) =    2.11497699E-08
+ Time steps done =          900  out of        20000
+ Time steps remaining =        19100
+ Estimated remaining time in seconds =    16867.4766    
+ Estimated remaining time in hh:mm:ss =      4 h 41 m 07 s
+ Estimated total run time in seconds =    17662.2793    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 22 s
+ We have done    4.50000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         1000
+ Time:   -1.49999996E-05  seconds
+ Elapsed time in seconds =    882.87179190699999     
+ Elapsed time in hh:mm:ss =      0 h 14 m 42 s
+ Mean elapsed time per time step in seconds =   0.882871807    
+ Max norm displacement vector U in all slices (m) =    4.26737472E-08
+ Time steps done =         1000  out of        20000
+ Time steps remaining =        19000
+ Estimated remaining time in seconds =    16774.5645    
+ Estimated remaining time in hh:mm:ss =      4 h 39 m 34 s
+ Estimated total run time in seconds =    17657.4355    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 17 s
+ We have done    5.00000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         1100
+ Time:    1.48500002E-03  seconds
+ Elapsed time in seconds =    970.55981324699997     
+ Elapsed time in hh:mm:ss =      0 h 16 m 10 s
+ Mean elapsed time per time step in seconds =   0.882327080    
+ Max norm displacement vector U in all slices (m) =    3.24270850E-08
+ Time steps done =         1100  out of        20000
+ Time steps remaining =        18900
+ Estimated remaining time in seconds =    16675.9824    
+ Estimated remaining time in hh:mm:ss =      4 h 37 m 55 s
+ Estimated total run time in seconds =    17646.5430    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 06 s
+ We have done    5.50000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         1200
+ Time:    2.98499991E-03  seconds
+ Elapsed time in seconds =    1058.5933213139999     
+ Elapsed time in hh:mm:ss =      0 h 17 m 38 s
+ Mean elapsed time per time step in seconds =   0.882161081    
+ Max norm displacement vector U in all slices (m) =    5.05708186E-09
+ Time steps done =         1200  out of        20000
+ Time steps remaining =        18800
+ Estimated remaining time in seconds =    16584.6289    
+ Estimated remaining time in hh:mm:ss =      4 h 36 m 24 s
+ Estimated total run time in seconds =    17643.2227    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 03 s
+ We have done    6.00000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         1300
+ Time:    4.48499992E-03  seconds
+ Elapsed time in seconds =    1147.1639517770000     
+ Elapsed time in hh:mm:ss =      0 h 19 m 07 s
+ Mean elapsed time per time step in seconds =   0.882433832    
+ Max norm displacement vector U in all slices (m) =    1.71311143E-08
+ Time steps done =         1300  out of        20000
+ Time steps remaining =        18700
+ Estimated remaining time in seconds =    16501.5117    
+ Estimated remaining time in hh:mm:ss =      4 h 35 m 01 s
+ Estimated total run time in seconds =    17648.6758    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 08 s
+ We have done    6.50000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         1400
+ Time:    5.98500017E-03  seconds
+ Elapsed time in seconds =    1234.2748171539999     
+ Elapsed time in hh:mm:ss =      0 h 20 m 34 s
+ Mean elapsed time per time step in seconds =   0.881624877    
+ Max norm displacement vector U in all slices (m) =    1.70721890E-08
+ Time steps done =         1400  out of        20000
+ Time steps remaining =        18600
+ Estimated remaining time in seconds =    16398.2227    
+ Estimated remaining time in hh:mm:ss =      4 h 33 m 18 s
+ Estimated total run time in seconds =    17632.4980    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 52 s
+ We have done    7.00000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         1500
+ Time:    7.48499995E-03  seconds
+ Elapsed time in seconds =    1322.0757135140000     
+ Elapsed time in hh:mm:ss =      0 h 22 m 02 s
+ Mean elapsed time per time step in seconds =   0.881383836    
+ Max norm displacement vector U in all slices (m) =    8.99674202E-09
+ Time steps done =         1500  out of        20000
+ Time steps remaining =        18500
+ Estimated remaining time in seconds =    16305.6006    
+ Estimated remaining time in hh:mm:ss =      4 h 31 m 45 s
+ Estimated total run time in seconds =    17627.6758    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 47 s
+ We have done    7.50000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         1600
+ Time:    8.98499973E-03  seconds
+ Elapsed time in seconds =    1409.7744125510001     
+ Elapsed time in hh:mm:ss =      0 h 23 m 29 s
+ Mean elapsed time per time step in seconds =   0.881108999    
+ Max norm displacement vector U in all slices (m) =    3.10675663E-09
+ Time steps done =         1600  out of        20000
+ Time steps remaining =        18400
+ Estimated remaining time in seconds =    16212.4053    
+ Estimated remaining time in hh:mm:ss =      4 h 30 m 12 s
+ Estimated total run time in seconds =    17622.1797    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 42 s
+ We have done    8.00000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         1700
+ Time:    1.04850000E-02  seconds
+ Elapsed time in seconds =    1496.7807231050001     
+ Elapsed time in hh:mm:ss =      0 h 24 m 56 s
+ Mean elapsed time per time step in seconds =   0.880459249    
+ Max norm displacement vector U in all slices (m) =    1.41649337E-09
+ Time steps done =         1700  out of        20000
+ Time steps remaining =        18300
+ Estimated remaining time in seconds =    16112.4043    
+ Estimated remaining time in hh:mm:ss =      4 h 28 m 32 s
+ Estimated total run time in seconds =    17609.1855    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 29 s
+ We have done    8.50000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         1800
+ Time:    1.19850002E-02  seconds
+ Elapsed time in seconds =    1584.8199782869999     
+ Elapsed time in hh:mm:ss =      0 h 26 m 24 s
+ Mean elapsed time per time step in seconds =   0.880455554    
+ Max norm displacement vector U in all slices (m) =    1.28777455E-09
+ Time steps done =         1800  out of        20000
+ Time steps remaining =        18200
+ Estimated remaining time in seconds =    16024.2910    
+ Estimated remaining time in hh:mm:ss =      4 h 27 m 04 s
+ Estimated total run time in seconds =    17609.1113    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 29 s
+ We have done    9.00000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         1900
+ Time:    1.34849995E-02  seconds
+ Elapsed time in seconds =    1672.9123798720000     
+ Elapsed time in hh:mm:ss =      0 h 27 m 52 s
+ Mean elapsed time per time step in seconds =   0.880480170    
+ Max norm displacement vector U in all slices (m) =    1.23515442E-09
+ Time steps done =         1900  out of        20000
+ Time steps remaining =        18100
+ Estimated remaining time in seconds =    15936.6914    
+ Estimated remaining time in hh:mm:ss =      4 h 25 m 36 s
+ Estimated total run time in seconds =    17609.6035    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 29 s
+ We have done    9.50000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         2000
+ Time:    1.49849998E-02  seconds
+ Elapsed time in seconds =    1761.1259103640000     
+ Elapsed time in hh:mm:ss =      0 h 29 m 21 s
+ Mean elapsed time per time step in seconds =   0.880562961    
+ Max norm displacement vector U in all slices (m) =    1.20192156E-09
+ Time steps done =         2000  out of        20000
+ Time steps remaining =        18000
+ Estimated remaining time in seconds =    15850.1328    
+ Estimated remaining time in hh:mm:ss =      4 h 24 m 10 s
+ Estimated total run time in seconds =    17611.2598    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 31 s
+ We have done    10.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+
+ Total number of time steps done:         2000
+ Writing the seismograms in parallel took   0.260496616      seconds
+
+ Time step #         2100
+ Time:    1.64850000E-02  seconds
+ Elapsed time in seconds =    1850.9315397920000     
+ Elapsed time in hh:mm:ss =      0 h 30 m 50 s
+ Mean elapsed time per time step in seconds =   0.881395996    
+ Max norm displacement vector U in all slices (m) =    1.14304199E-09
+ Time steps done =         2100  out of        20000
+ Time steps remaining =        17900
+ Estimated remaining time in seconds =    15776.9883    
+ Estimated remaining time in hh:mm:ss =      4 h 22 m 56 s
+ Estimated total run time in seconds =    17627.9199    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 47 s
+ We have done    10.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         2200
+ Time:    1.79849993E-02  seconds
+ Elapsed time in seconds =    1939.8182176620001     
+ Elapsed time in hh:mm:ss =      0 h 32 m 19 s
+ Mean elapsed time per time step in seconds =   0.881735563    
+ Max norm displacement vector U in all slices (m) =    1.07006659E-09
+ Time steps done =         2200  out of        20000
+ Time steps remaining =        17800
+ Estimated remaining time in seconds =    15694.8926    
+ Estimated remaining time in hh:mm:ss =      4 h 21 m 34 s
+ Estimated total run time in seconds =    17634.7109    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 54 s
+ We have done    11.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         2300
+ Time:    1.94850005E-02  seconds
+ Elapsed time in seconds =    2027.7198427219998     
+ Elapsed time in hh:mm:ss =      0 h 33 m 47 s
+ Mean elapsed time per time step in seconds =   0.881617308    
+ Max norm displacement vector U in all slices (m) =    1.01520248E-09
+ Time steps done =         2300  out of        20000
+ Time steps remaining =        17700
+ Estimated remaining time in seconds =    15604.6270    
+ Estimated remaining time in hh:mm:ss =      4 h 20 m 04 s
+ Estimated total run time in seconds =    17632.3457    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 52 s
+ We have done    11.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         2400
+ Time:    2.09849998E-02  seconds
+ Elapsed time in seconds =    2116.3869198700004     
+ Elapsed time in hh:mm:ss =      0 h 35 m 16 s
+ Mean elapsed time per time step in seconds =   0.881827891    
+ Max norm displacement vector U in all slices (m) =    9.87142368E-10
+ Time steps done =         2400  out of        20000
+ Time steps remaining =        17600
+ Estimated remaining time in seconds =    15520.1709    
+ Estimated remaining time in hh:mm:ss =      4 h 18 m 40 s
+ Estimated total run time in seconds =    17636.5586    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 56 s
+ We have done    12.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         2500
+ Time:    2.24849992E-02  seconds
+ Elapsed time in seconds =    2204.6263867449998     
+ Elapsed time in hh:mm:ss =      0 h 36 m 44 s
+ Mean elapsed time per time step in seconds =   0.881850541    
+ Max norm displacement vector U in all slices (m) =    9.77187886E-10
+ Time steps done =         2500  out of        20000
+ Time steps remaining =        17500
+ Estimated remaining time in seconds =    15432.3848    
+ Estimated remaining time in hh:mm:ss =      4 h 17 m 12 s
+ Estimated total run time in seconds =    17637.0117    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 57 s
+ We have done    12.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         2600
+ Time:    2.39850003E-02  seconds
+ Elapsed time in seconds =    2293.5745580780003     
+ Elapsed time in hh:mm:ss =      0 h 38 m 13 s
+ Mean elapsed time per time step in seconds =   0.882144034    
+ Max norm displacement vector U in all slices (m) =    9.71619341E-10
+ Time steps done =         2600  out of        20000
+ Time steps remaining =        17400
+ Estimated remaining time in seconds =    15349.3066    
+ Estimated remaining time in hh:mm:ss =      4 h 15 m 49 s
+ Estimated total run time in seconds =    17642.8809    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 02 s
+ We have done    13.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         2700
+ Time:    2.54849996E-02  seconds
+ Elapsed time in seconds =    2381.7859433639996     
+ Elapsed time in hh:mm:ss =      0 h 39 m 41 s
+ Mean elapsed time per time step in seconds =   0.882142961    
+ Max norm displacement vector U in all slices (m) =    9.64551994E-10
+ Time steps done =         2700  out of        20000
+ Time steps remaining =        17300
+ Estimated remaining time in seconds =    15261.0732    
+ Estimated remaining time in hh:mm:ss =      4 h 14 m 21 s
+ Estimated total run time in seconds =    17642.8594    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 02 s
+ We have done    13.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         2800
+ Time:    2.69850008E-02  seconds
+ Elapsed time in seconds =    2470.4719505249996     
+ Elapsed time in hh:mm:ss =      0 h 41 m 10 s
+ Mean elapsed time per time step in seconds =   0.882311404    
+ Max norm displacement vector U in all slices (m) =    9.54174850E-10
+ Time steps done =         2800  out of        20000
+ Time steps remaining =        17200
+ Estimated remaining time in seconds =    15175.7559    
+ Estimated remaining time in hh:mm:ss =      4 h 12 m 55 s
+ Estimated total run time in seconds =    17646.2285    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 06 s
+ We have done    14.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         2900
+ Time:    2.84850001E-02  seconds
+ Elapsed time in seconds =    2558.4624759879998     
+ Elapsed time in hh:mm:ss =      0 h 42 m 38 s
+ Mean elapsed time per time step in seconds =   0.882228434    
+ Max norm displacement vector U in all slices (m) =    9.33703781E-10
+ Time steps done =         2900  out of        20000
+ Time steps remaining =        17100
+ Estimated remaining time in seconds =    15086.1064    
+ Estimated remaining time in hh:mm:ss =      4 h 11 m 26 s
+ Estimated total run time in seconds =    17644.5684    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 04 s
+ We have done    14.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         3000
+ Time:    2.99849994E-02  seconds
+ Elapsed time in seconds =    2646.2703423049998     
+ Elapsed time in hh:mm:ss =      0 h 44 m 06 s
+ Mean elapsed time per time step in seconds =   0.882090092    
+ Max norm displacement vector U in all slices (m) =    8.97147190E-10
+ Time steps done =         3000  out of        20000
+ Time steps remaining =        17000
+ Estimated remaining time in seconds =    14995.5322    
+ Estimated remaining time in hh:mm:ss =      4 h 09 m 55 s
+ Estimated total run time in seconds =    17641.8027    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 01 s
+ We have done    15.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         3100
+ Time:    3.14849988E-02  seconds
+ Elapsed time in seconds =    2734.8896601630004     
+ Elapsed time in hh:mm:ss =      0 h 45 m 34 s
+ Mean elapsed time per time step in seconds =   0.882222474    
+ Max norm displacement vector U in all slices (m) =    8.44824544E-10
+ Time steps done =         3100  out of        20000
+ Time steps remaining =        16900
+ Estimated remaining time in seconds =    14909.5596    
+ Estimated remaining time in hh:mm:ss =      4 h 08 m 29 s
+ Estimated total run time in seconds =    17644.4492    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 04 s
+ We have done    15.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         3200
+ Time:    3.29850018E-02  seconds
+ Elapsed time in seconds =    2821.5694188560001     
+ Elapsed time in hh:mm:ss =      0 h 47 m 01 s
+ Mean elapsed time per time step in seconds =   0.881740451    
+ Max norm displacement vector U in all slices (m) =    7.87532983E-10
+ Time steps done =         3200  out of        20000
+ Time steps remaining =        16800
+ Estimated remaining time in seconds =    14813.2393    
+ Estimated remaining time in hh:mm:ss =      4 h 06 m 53 s
+ Estimated total run time in seconds =    17634.8086    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 54 s
+ We have done    16.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         3300
+ Time:    3.44850011E-02  seconds
+ Elapsed time in seconds =    2909.2213231679998     
+ Elapsed time in hh:mm:ss =      0 h 48 m 29 s
+ Mean elapsed time per time step in seconds =   0.881582201    
+ Max norm displacement vector U in all slices (m) =    7.37391037E-10
+ Time steps done =         3300  out of        20000
+ Time steps remaining =        16700
+ Estimated remaining time in seconds =    14722.4229    
+ Estimated remaining time in hh:mm:ss =      4 h 05 m 22 s
+ Estimated total run time in seconds =    17631.6445    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 51 s
+ We have done    16.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         3400
+ Time:    3.59850004E-02  seconds
+ Elapsed time in seconds =    2998.7446824010003     
+ Elapsed time in hh:mm:ss =      0 h 49 m 58 s
+ Mean elapsed time per time step in seconds =   0.881983757    
+ Max norm displacement vector U in all slices (m) =    7.00647762E-10
+ Time steps done =         3400  out of        20000
+ Time steps remaining =        16600
+ Estimated remaining time in seconds =    14640.9297    
+ Estimated remaining time in hh:mm:ss =      4 h 04 m 00 s
+ Estimated total run time in seconds =    17639.6738    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 59 s
+ We have done    17.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         3500
+ Time:    3.74849997E-02  seconds
+ Elapsed time in seconds =    3086.3714660260002     
+ Elapsed time in hh:mm:ss =      0 h 51 m 26 s
+ Mean elapsed time per time step in seconds =   0.881820440    
+ Max norm displacement vector U in all slices (m) =    6.73920419E-10
+ Time steps done =         3500  out of        20000
+ Time steps remaining =        16500
+ Estimated remaining time in seconds =    14550.0371    
+ Estimated remaining time in hh:mm:ss =      4 h 02 m 30 s
+ Estimated total run time in seconds =    17636.4082    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 56 s
+ We have done    17.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         3600
+ Time:    3.89849991E-02  seconds
+ Elapsed time in seconds =    3173.3931305790002     
+ Elapsed time in hh:mm:ss =      0 h 52 m 53 s
+ Mean elapsed time per time step in seconds =   0.881498098    
+ Max norm displacement vector U in all slices (m) =    6.50107856E-10
+ Time steps done =         3600  out of        20000
+ Time steps remaining =        16400
+ Estimated remaining time in seconds =    14456.5684    
+ Estimated remaining time in hh:mm:ss =      4 h 00 m 56 s
+ Estimated total run time in seconds =    17629.9609    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 49 s
+ We have done    18.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         3700
+ Time:    4.04849984E-02  seconds
+ Elapsed time in seconds =    3262.1520044409999     
+ Elapsed time in hh:mm:ss =      0 h 54 m 22 s
+ Mean elapsed time per time step in seconds =   0.881662726    
+ Max norm displacement vector U in all slices (m) =    6.25124286E-10
+ Time steps done =         3700  out of        20000
+ Time steps remaining =        16300
+ Estimated remaining time in seconds =    14371.1025    
+ Estimated remaining time in hh:mm:ss =      3 h 59 m 31 s
+ Estimated total run time in seconds =    17633.2539    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 53 s
+ We have done    18.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         3800
+ Time:    4.19850014E-02  seconds
+ Elapsed time in seconds =    3350.5335207910002     
+ Elapsed time in hh:mm:ss =      0 h 55 m 50 s
+ Mean elapsed time per time step in seconds =   0.881719351    
+ Max norm displacement vector U in all slices (m) =    5.98226357E-10
+ Time steps done =         3800  out of        20000
+ Time steps remaining =        16200
+ Estimated remaining time in seconds =    14283.8535    
+ Estimated remaining time in hh:mm:ss =      3 h 58 m 03 s
+ Estimated total run time in seconds =    17634.3867    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 54 s
+ We have done    19.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         3900
+ Time:    4.34850007E-02  seconds
+ Elapsed time in seconds =    3438.4652745339999     
+ Elapsed time in hh:mm:ss =      0 h 57 m 18 s
+ Mean elapsed time per time step in seconds =   0.881657779    
+ Max norm displacement vector U in all slices (m) =    5.69223724E-10
+ Time steps done =         3900  out of        20000
+ Time steps remaining =        16100
+ Estimated remaining time in seconds =    14194.6904    
+ Estimated remaining time in hh:mm:ss =      3 h 56 m 34 s
+ Estimated total run time in seconds =    17633.1543    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 53 s
+ We have done    19.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         4000
+ Time:    4.49850000E-02  seconds
+ Elapsed time in seconds =    3526.5437797559998     
+ Elapsed time in hh:mm:ss =      0 h 58 m 46 s
+ Mean elapsed time per time step in seconds =   0.881635964    
+ Max norm displacement vector U in all slices (m) =    5.38325051E-10
+ Time steps done =         4000  out of        20000
+ Time steps remaining =        16000
+ Estimated remaining time in seconds =    14106.1748    
+ Estimated remaining time in hh:mm:ss =      3 h 55 m 06 s
+ Estimated total run time in seconds =    17632.7188    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 52 s
+ We have done    20.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+
+ Total number of time steps done:         4000
+ Writing the seismograms in parallel took   0.227156460      seconds
+
+ Time step #         4100
+ Time:    4.64849994E-02  seconds
+ Elapsed time in seconds =    3615.6126710700000     
+ Elapsed time in hh:mm:ss =      1 h 00 m 15 s
+ Mean elapsed time per time step in seconds =   0.881856740    
+ Max norm displacement vector U in all slices (m) =    5.07272724E-10
+ Time steps done =         4100  out of        20000
+ Time steps remaining =        15900
+ Estimated remaining time in seconds =    14021.5225    
+ Estimated remaining time in hh:mm:ss =      3 h 53 m 41 s
+ Estimated total run time in seconds =    17637.1348    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 57 s
+ We have done    20.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         4200
+ Time:    4.79849987E-02  seconds
+ Elapsed time in seconds =    3704.1915002960004     
+ Elapsed time in hh:mm:ss =      1 h 01 m 44 s
+ Mean elapsed time per time step in seconds =   0.881950378    
+ Max norm displacement vector U in all slices (m) =    4.82381524E-10
+ Time steps done =         4200  out of        20000
+ Time steps remaining =        15800
+ Estimated remaining time in seconds =    13934.8154    
+ Estimated remaining time in hh:mm:ss =      3 h 52 m 14 s
+ Estimated total run time in seconds =    17639.0078    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 59 s
+ We have done    21.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         4300
+ Time:    4.94850017E-02  seconds
+ Elapsed time in seconds =    3792.6030736100001     
+ Elapsed time in hh:mm:ss =      1 h 03 m 12 s
+ Mean elapsed time per time step in seconds =   0.882000744    
+ Max norm displacement vector U in all slices (m) =    4.68660055E-10
+ Time steps done =         4300  out of        20000
+ Time steps remaining =        15700
+ Estimated remaining time in seconds =    13847.4111    
+ Estimated remaining time in hh:mm:ss =      3 h 50 m 47 s
+ Estimated total run time in seconds =    17640.0137    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 00 s
+ We have done    21.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         4400
+ Time:    5.09850010E-02  seconds
+ Elapsed time in seconds =    3880.5254841810001     
+ Elapsed time in hh:mm:ss =      1 h 04 m 40 s
+ Mean elapsed time per time step in seconds =   0.881937623    
+ Max norm displacement vector U in all slices (m) =    4.64917715E-10
+ Time steps done =         4400  out of        20000
+ Time steps remaining =        15600
+ Estimated remaining time in seconds =    13758.2266    
+ Estimated remaining time in hh:mm:ss =      3 h 49 m 18 s
+ Estimated total run time in seconds =    17638.7520    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 58 s
+ We have done    22.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         4500
+ Time:    5.24850003E-02  seconds
+ Elapsed time in seconds =    3969.1398175479999     
+ Elapsed time in hh:mm:ss =      1 h 06 m 09 s
+ Mean elapsed time per time step in seconds =   0.882031083    
+ Max norm displacement vector U in all slices (m) =    4.63713790E-10
+ Time steps done =         4500  out of        20000
+ Time steps remaining =        15500
+ Estimated remaining time in seconds =    13671.4814    
+ Estimated remaining time in hh:mm:ss =      3 h 47 m 51 s
+ Estimated total run time in seconds =    17640.6211    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 00 s
+ We have done    22.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         4600
+ Time:    5.39849997E-02  seconds
+ Elapsed time in seconds =    4057.0493723350000     
+ Elapsed time in hh:mm:ss =      1 h 07 m 37 s
+ Mean elapsed time per time step in seconds =   0.881967247    
+ Max norm displacement vector U in all slices (m) =    4.62552607E-10
+ Time steps done =         4600  out of        20000
+ Time steps remaining =        15400
+ Estimated remaining time in seconds =    13582.2959    
+ Estimated remaining time in hh:mm:ss =      3 h 46 m 22 s
+ Estimated total run time in seconds =    17639.3457    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 59 s
+ We have done    23.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         4700
+ Time:    5.54849990E-02  seconds
+ Elapsed time in seconds =    4144.9031302129997     
+ Elapsed time in hh:mm:ss =      1 h 09 m 04 s
+ Mean elapsed time per time step in seconds =   0.881894290    
+ Max norm displacement vector U in all slices (m) =    4.70701977E-10
+ Time steps done =         4700  out of        20000
+ Time steps remaining =        15300
+ Estimated remaining time in seconds =    13492.9824    
+ Estimated remaining time in hh:mm:ss =      3 h 44 m 52 s
+ Estimated total run time in seconds =    17637.8848    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 57 s
+ We have done    23.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         4800
+ Time:    5.69849983E-02  seconds
+ Elapsed time in seconds =    4233.7544262179999     
+ Elapsed time in hh:mm:ss =      1 h 10 m 33 s
+ Mean elapsed time per time step in seconds =   0.882032156    
+ Max norm displacement vector U in all slices (m) =    4.79556672E-10
+ Time steps done =         4800  out of        20000
+ Time steps remaining =        15200
+ Estimated remaining time in seconds =    13406.8887    
+ Estimated remaining time in hh:mm:ss =      3 h 43 m 26 s
+ Estimated total run time in seconds =    17640.6426    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 00 s
+ We have done    24.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         4900
+ Time:    5.84850013E-02  seconds
+ Elapsed time in seconds =    4321.6943182750001     
+ Elapsed time in hh:mm:ss =      1 h 12 m 01 s
+ Mean elapsed time per time step in seconds =   0.881978452    
+ Max norm displacement vector U in all slices (m) =    4.85147922E-10
+ Time steps done =         4900  out of        20000
+ Time steps remaining =        15100
+ Estimated remaining time in seconds =    13317.8740    
+ Estimated remaining time in hh:mm:ss =      3 h 41 m 57 s
+ Estimated total run time in seconds =    17639.5684    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 59 s
+ We have done    24.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         5000
+ Time:    5.99850006E-02  seconds
+ Elapsed time in seconds =    4410.4992644439999     
+ Elapsed time in hh:mm:ss =      1 h 13 m 30 s
+ Mean elapsed time per time step in seconds =   0.882099867    
+ Max norm displacement vector U in all slices (m) =    4.90454843E-10
+ Time steps done =         5000  out of        20000
+ Time steps remaining =        15000
+ Estimated remaining time in seconds =    13231.4980    
+ Estimated remaining time in hh:mm:ss =      3 h 40 m 31 s
+ Estimated total run time in seconds =    17641.9961    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 01 s
+ We have done    25.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         5100
+ Time:    6.14850000E-02  seconds
+ Elapsed time in seconds =    4498.8149630469998     
+ Elapsed time in hh:mm:ss =      1 h 14 m 58 s
+ Mean elapsed time per time step in seconds =   0.882120609    
+ Max norm displacement vector U in all slices (m) =    4.93401264E-10
+ Time steps done =         5100  out of        20000
+ Time steps remaining =        14900
+ Estimated remaining time in seconds =    13143.5967    
+ Estimated remaining time in hh:mm:ss =      3 h 39 m 03 s
+ Estimated total run time in seconds =    17642.4121    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 02 s
+ We have done    25.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         5200
+ Time:    6.29850030E-02  seconds
+ Elapsed time in seconds =    4586.6416814889999     
+ Elapsed time in hh:mm:ss =      1 h 16 m 26 s
+ Mean elapsed time per time step in seconds =   0.882046461    
+ Max norm displacement vector U in all slices (m) =    4.91748808E-10
+ Time steps done =         5200  out of        20000
+ Time steps remaining =        14800
+ Estimated remaining time in seconds =    13054.2881    
+ Estimated remaining time in hh:mm:ss =      3 h 37 m 34 s
+ Estimated total run time in seconds =    17640.9297    
+ Estimated total run time in hh:mm:ss =      4 h 54 m 00 s
+ We have done    26.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         5300
+ Time:    6.44849986E-02  seconds
+ Elapsed time in seconds =    4673.9538524879999     
+ Elapsed time in hh:mm:ss =      1 h 17 m 53 s
+ Mean elapsed time per time step in seconds =   0.881878078    
+ Max norm displacement vector U in all slices (m) =    4.86278851E-10
+ Time steps done =         5300  out of        20000
+ Time steps remaining =        14700
+ Estimated remaining time in seconds =    12963.6074    
+ Estimated remaining time in hh:mm:ss =      3 h 36 m 03 s
+ Estimated total run time in seconds =    17637.5625    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 57 s
+ We have done    26.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         5400
+ Time:    6.59850016E-02  seconds
+ Elapsed time in seconds =    4761.2296239950001     
+ Elapsed time in hh:mm:ss =      1 h 19 m 21 s
+ Mean elapsed time per time step in seconds =   0.881709218    
+ Max norm displacement vector U in all slices (m) =    4.78228568E-10
+ Time steps done =         5400  out of        20000
+ Time steps remaining =        14600
+ Estimated remaining time in seconds =    12872.9541    
+ Estimated remaining time in hh:mm:ss =      3 h 34 m 32 s
+ Estimated total run time in seconds =    17634.1836    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 54 s
+ We have done    27.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         5500
+ Time:    6.74849972E-02  seconds
+ Elapsed time in seconds =    4848.4964320499994     
+ Elapsed time in hh:mm:ss =      1 h 20 m 48 s
+ Mean elapsed time per time step in seconds =   0.881544828    
+ Max norm displacement vector U in all slices (m) =    4.68826922E-10
+ Time steps done =         5500  out of        20000
+ Time steps remaining =        14500
+ Estimated remaining time in seconds =    12782.3994    
+ Estimated remaining time in hh:mm:ss =      3 h 33 m 02 s
+ Estimated total run time in seconds =    17630.8965    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 50 s
+ We have done    27.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         5600
+ Time:    6.89850003E-02  seconds
+ Elapsed time in seconds =    4936.4261370309996     
+ Elapsed time in hh:mm:ss =      1 h 22 m 16 s
+ Mean elapsed time per time step in seconds =   0.881504655    
+ Max norm displacement vector U in all slices (m) =    4.57395760E-10
+ Time steps done =         5600  out of        20000
+ Time steps remaining =        14400
+ Estimated remaining time in seconds =    12693.6670    
+ Estimated remaining time in hh:mm:ss =      3 h 31 m 33 s
+ Estimated total run time in seconds =    17630.0938    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 50 s
+ We have done    28.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         5700
+ Time:    7.04850033E-02  seconds
+ Elapsed time in seconds =    5025.6824703109996     
+ Elapsed time in hh:mm:ss =      1 h 23 m 45 s
+ Mean elapsed time per time step in seconds =   0.881698668    
+ Max norm displacement vector U in all slices (m) =    4.41594233E-10
+ Time steps done =         5700  out of        20000
+ Time steps remaining =        14300
+ Estimated remaining time in seconds =    12608.2910    
+ Estimated remaining time in hh:mm:ss =      3 h 30 m 08 s
+ Estimated total run time in seconds =    17633.9727    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 53 s
+ We have done    28.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         5800
+ Time:    7.19849989E-02  seconds
+ Elapsed time in seconds =    5115.0565639709994     
+ Elapsed time in hh:mm:ss =      1 h 25 m 15 s
+ Mean elapsed time per time step in seconds =   0.881906331    
+ Max norm displacement vector U in all slices (m) =    4.21381208E-10
+ Time steps done =         5800  out of        20000
+ Time steps remaining =        14200
+ Estimated remaining time in seconds =    12523.0693    
+ Estimated remaining time in hh:mm:ss =      3 h 28 m 43 s
+ Estimated total run time in seconds =    17638.1270    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 58 s
+ We have done    29.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         5900
+ Time:    7.34850019E-02  seconds
+ Elapsed time in seconds =    5203.1449700029998     
+ Elapsed time in hh:mm:ss =      1 h 26 m 43 s
+ Mean elapsed time per time step in seconds =   0.881888986    
+ Max norm displacement vector U in all slices (m) =    3.98966665E-10
+ Time steps done =         5900  out of        20000
+ Time steps remaining =        14100
+ Estimated remaining time in seconds =    12434.6348    
+ Estimated remaining time in hh:mm:ss =      3 h 27 m 14 s
+ Estimated total run time in seconds =    17637.7793    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 57 s
+ We have done    29.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         6000
+ Time:    7.49849975E-02  seconds
+ Elapsed time in seconds =    5290.7372777940000     
+ Elapsed time in hh:mm:ss =      1 h 28 m 10 s
+ Mean elapsed time per time step in seconds =   0.881789565    
+ Max norm displacement vector U in all slices (m) =    3.76771170E-10
+ Time steps done =         6000  out of        20000
+ Time steps remaining =        14000
+ Estimated remaining time in seconds =    12345.0537    
+ Estimated remaining time in hh:mm:ss =      3 h 25 m 45 s
+ Estimated total run time in seconds =    17635.7910    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 55 s
+ We have done    30.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+
+ Total number of time steps done:         6000
+ Writing the seismograms in parallel took   0.290266275      seconds
+
+ Time step #         6100
+ Time:    7.64850006E-02  seconds
+ Elapsed time in seconds =    5379.2394976870000     
+ Elapsed time in hh:mm:ss =      1 h 29 m 39 s
+ Mean elapsed time per time step in seconds =   0.881842554    
+ Max norm displacement vector U in all slices (m) =    3.55669549E-10
+ Time steps done =         6100  out of        20000
+ Time steps remaining =        13900
+ Estimated remaining time in seconds =    12257.6113    
+ Estimated remaining time in hh:mm:ss =      3 h 24 m 17 s
+ Estimated total run time in seconds =    17636.8516    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 56 s
+ We have done    30.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         6200
+ Time:    7.79850036E-02  seconds
+ Elapsed time in seconds =    5466.4114248420001     
+ Elapsed time in hh:mm:ss =      1 h 31 m 06 s
+ Mean elapsed time per time step in seconds =   0.881679237    
+ Max norm displacement vector U in all slices (m) =    3.38567313E-10
+ Time steps done =         6200  out of        20000
+ Time steps remaining =        13800
+ Estimated remaining time in seconds =    12167.1738    
+ Estimated remaining time in hh:mm:ss =      3 h 22 m 47 s
+ Estimated total run time in seconds =    17633.5859    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 53 s
+ We have done    31.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         6300
+ Time:    7.94849992E-02  seconds
+ Elapsed time in seconds =    5554.6787866280001     
+ Elapsed time in hh:mm:ss =      1 h 32 m 34 s
+ Mean elapsed time per time step in seconds =   0.881695032    
+ Max norm displacement vector U in all slices (m) =    3.25896421E-10
+ Time steps done =         6300  out of        20000
+ Time steps remaining =        13700
+ Estimated remaining time in seconds =    12079.2217    
+ Estimated remaining time in hh:mm:ss =      3 h 21 m 19 s
+ Estimated total run time in seconds =    17633.9004    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 53 s
+ We have done    31.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         6400
+ Time:    8.09850022E-02  seconds
+ Elapsed time in seconds =    5642.5740085070001     
+ Elapsed time in hh:mm:ss =      1 h 34 m 02 s
+ Mean elapsed time per time step in seconds =   0.881652176    
+ Max norm displacement vector U in all slices (m) =    3.16815907E-10
+ Time steps done =         6400  out of        20000
+ Time steps remaining =        13600
+ Estimated remaining time in seconds =    11990.4697    
+ Estimated remaining time in hh:mm:ss =      3 h 19 m 50 s
+ Estimated total run time in seconds =    17633.0430    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 53 s
+ We have done    32.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         6500
+ Time:    8.24849978E-02  seconds
+ Elapsed time in seconds =    5729.8826936639998     
+ Elapsed time in hh:mm:ss =      1 h 35 m 29 s
+ Mean elapsed time per time step in seconds =   0.881520391    
+ Max norm displacement vector U in all slices (m) =    3.11025233E-10
+ Time steps done =         6500  out of        20000
+ Time steps remaining =        13500
+ Estimated remaining time in seconds =    11900.5254    
+ Estimated remaining time in hh:mm:ss =      3 h 18 m 20 s
+ Estimated total run time in seconds =    17630.4082    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 50 s
+ We have done    32.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         6600
+ Time:    8.39850008E-02  seconds
+ Elapsed time in seconds =    5817.4292568559995     
+ Elapsed time in hh:mm:ss =      1 h 36 m 57 s
+ Mean elapsed time per time step in seconds =   0.881428659    
+ Max norm displacement vector U in all slices (m) =    3.06630638E-10
+ Time steps done =         6600  out of        20000
+ Time steps remaining =        13400
+ Estimated remaining time in seconds =    11811.1445    
+ Estimated remaining time in hh:mm:ss =      3 h 16 m 51 s
+ Estimated total run time in seconds =    17628.5742    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 48 s
+ We have done    33.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         6700
+ Time:    8.54849964E-02  seconds
+ Elapsed time in seconds =    5904.9555181890000     
+ Elapsed time in hh:mm:ss =      1 h 38 m 24 s
+ Mean elapsed time per time step in seconds =   0.881336629    
+ Max norm displacement vector U in all slices (m) =    3.03984476E-10
+ Time steps done =         6700  out of        20000
+ Time steps remaining =        13300
+ Estimated remaining time in seconds =    11721.7773    
+ Estimated remaining time in hh:mm:ss =      3 h 15 m 21 s
+ Estimated total run time in seconds =    17626.7324    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 46 s
+ We have done    33.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         6800
+ Time:    8.69849995E-02  seconds
+ Elapsed time in seconds =    5992.5391423960000     
+ Elapsed time in hh:mm:ss =      1 h 39 m 52 s
+ Mean elapsed time per time step in seconds =   0.881255746    
+ Max norm displacement vector U in all slices (m) =    3.01825009E-10
+ Time steps done =         6800  out of        20000
+ Time steps remaining =        13200
+ Estimated remaining time in seconds =    11632.5762    
+ Estimated remaining time in hh:mm:ss =      3 h 13 m 52 s
+ Estimated total run time in seconds =    17625.1152    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 45 s
+ We have done    34.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         6900
+ Time:    8.84850025E-02  seconds
+ Elapsed time in seconds =    6080.4260345490002     
+ Elapsed time in hh:mm:ss =      1 h 41 m 20 s
+ Mean elapsed time per time step in seconds =   0.881221175    
+ Max norm displacement vector U in all slices (m) =    2.99161473E-10
+ Time steps done =         6900  out of        20000
+ Time steps remaining =        13100
+ Estimated remaining time in seconds =    11543.9971    
+ Estimated remaining time in hh:mm:ss =      3 h 12 m 23 s
+ Estimated total run time in seconds =    17624.4238    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 44 s
+ We have done    34.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         7000
+ Time:    8.99849981E-02  seconds
+ Elapsed time in seconds =    6168.3832187999997     
+ Elapsed time in hh:mm:ss =      1 h 42 m 48 s
+ Mean elapsed time per time step in seconds =   0.881197631    
+ Max norm displacement vector U in all slices (m) =    2.95659219E-10
+ Time steps done =         7000  out of        20000
+ Time steps remaining =        13000
+ Estimated remaining time in seconds =    11455.5684    
+ Estimated remaining time in hh:mm:ss =      3 h 10 m 55 s
+ Estimated total run time in seconds =    17623.9512    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 43 s
+ We have done    35.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         7100
+ Time:    9.14850011E-02  seconds
+ Elapsed time in seconds =    6256.4290451749994     
+ Elapsed time in hh:mm:ss =      1 h 44 m 16 s
+ Mean elapsed time per time step in seconds =   0.881187201    
+ Max norm displacement vector U in all slices (m) =    2.91157237E-10
+ Time steps done =         7100  out of        20000
+ Time steps remaining =        12900
+ Estimated remaining time in seconds =    11367.3145    
+ Estimated remaining time in hh:mm:ss =      3 h 09 m 27 s
+ Estimated total run time in seconds =    17623.7441    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 43 s
+ We have done    35.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         7200
+ Time:    9.29849967E-02  seconds
+ Elapsed time in seconds =    6345.0005151360001     
+ Elapsed time in hh:mm:ss =      1 h 45 m 45 s
+ Mean elapsed time per time step in seconds =   0.881250083    
+ Max norm displacement vector U in all slices (m) =    2.88362362E-10
+ Time steps done =         7200  out of        20000
+ Time steps remaining =        12800
+ Estimated remaining time in seconds =    11280.0010    
+ Estimated remaining time in hh:mm:ss =      3 h 08 m 00 s
+ Estimated total run time in seconds =    17625.0020    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 45 s
+ We have done    36.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         7300
+ Time:    9.44849998E-02  seconds
+ Elapsed time in seconds =    6432.3028045889996     
+ Elapsed time in hh:mm:ss =      1 h 47 m 12 s
+ Mean elapsed time per time step in seconds =   0.881137371    
+ Max norm displacement vector U in all slices (m) =    2.85494517E-10
+ Time steps done =         7300  out of        20000
+ Time steps remaining =        12700
+ Estimated remaining time in seconds =    11190.4443    
+ Estimated remaining time in hh:mm:ss =      3 h 06 m 30 s
+ Estimated total run time in seconds =    17622.7480    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 42 s
+ We have done    36.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         7400
+ Time:    9.59850028E-02  seconds
+ Elapsed time in seconds =    6520.5918843640002     
+ Elapsed time in hh:mm:ss =      1 h 48 m 40 s
+ Mean elapsed time per time step in seconds =   0.881161094    
+ Max norm displacement vector U in all slices (m) =    2.80203305E-10
+ Time steps done =         7400  out of        20000
+ Time steps remaining =        12600
+ Estimated remaining time in seconds =    11102.6299    
+ Estimated remaining time in hh:mm:ss =      3 h 05 m 02 s
+ Estimated total run time in seconds =    17623.2207    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 43 s
+ We have done    37.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         7500
+ Time:    9.74849984E-02  seconds
+ Elapsed time in seconds =    6608.9658354449994     
+ Elapsed time in hh:mm:ss =      1 h 50 m 08 s
+ Mean elapsed time per time step in seconds =   0.881195426    
+ Max norm displacement vector U in all slices (m) =    2.73080031E-10
+ Time steps done =         7500  out of        20000
+ Time steps remaining =        12500
+ Estimated remaining time in seconds =    11014.9434    
+ Estimated remaining time in hh:mm:ss =      3 h 03 m 34 s
+ Estimated total run time in seconds =    17623.9082    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 43 s
+ We have done    37.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         7600
+ Time:    9.89850014E-02  seconds
+ Elapsed time in seconds =    6696.5588483129995     
+ Elapsed time in hh:mm:ss =      1 h 51 m 36 s
+ Mean elapsed time per time step in seconds =   0.881126165    
+ Max norm displacement vector U in all slices (m) =    2.66709765E-10
+ Time steps done =         7600  out of        20000
+ Time steps remaining =        12400
+ Estimated remaining time in seconds =    10925.9648    
+ Estimated remaining time in hh:mm:ss =      3 h 02 m 05 s
+ Estimated total run time in seconds =    17622.5234    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 42 s
+ We have done    38.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         7700
+ Time:   0.100484997      seconds
+ Elapsed time in seconds =    6784.3968891220002     
+ Elapsed time in hh:mm:ss =      1 h 53 m 04 s
+ Mean elapsed time per time step in seconds =   0.881090522    
+ Max norm displacement vector U in all slices (m) =    2.58853855E-10
+ Time steps done =         7700  out of        20000
+ Time steps remaining =        12300
+ Estimated remaining time in seconds =    10837.4131    
+ Estimated remaining time in hh:mm:ss =      3 h 00 m 37 s
+ Estimated total run time in seconds =    17621.8105    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 41 s
+ We have done    38.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         7800
+ Time:   0.101985000      seconds
+ Elapsed time in seconds =    6871.7020159889998     
+ Elapsed time in hh:mm:ss =      1 h 54 m 31 s
+ Mean elapsed time per time step in seconds =   0.880987465    
+ Max norm displacement vector U in all slices (m) =    2.49864102E-10
+ Time steps done =         7800  out of        20000
+ Time steps remaining =        12200
+ Estimated remaining time in seconds =    10748.0469    
+ Estimated remaining time in hh:mm:ss =      2 h 59 m 08 s
+ Estimated total run time in seconds =    17619.7480    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 39 s
+ We have done    39.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         7900
+ Time:   0.103485003      seconds
+ Elapsed time in seconds =    6959.0440212909998     
+ Elapsed time in hh:mm:ss =      1 h 55 m 59 s
+ Mean elapsed time per time step in seconds =   0.880891621    
+ Max norm displacement vector U in all slices (m) =    2.40420461E-10
+ Time steps done =         7900  out of        20000
+ Time steps remaining =        12100
+ Estimated remaining time in seconds =    10658.7891    
+ Estimated remaining time in hh:mm:ss =      2 h 57 m 38 s
+ Estimated total run time in seconds =    17617.8320    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    39.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         8000
+ Time:   0.104984999      seconds
+ Elapsed time in seconds =    7046.9672797920002     
+ Elapsed time in hh:mm:ss =      1 h 57 m 26 s
+ Mean elapsed time per time step in seconds =   0.880870938    
+ Max norm displacement vector U in all slices (m) =    2.31157066E-10
+ Time steps done =         8000  out of        20000
+ Time steps remaining =        12000
+ Estimated remaining time in seconds =    10570.4512    
+ Estimated remaining time in hh:mm:ss =      2 h 56 m 10 s
+ Estimated total run time in seconds =    17617.4180    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    40.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+
+ Total number of time steps done:         8000
+ Writing the seismograms in parallel took   0.253133446      seconds
+
+ Time step #         8100
+ Time:   0.106485002      seconds
+ Elapsed time in seconds =    7136.7265722140000     
+ Elapsed time in hh:mm:ss =      1 h 58 m 56 s
+ Mean elapsed time per time step in seconds =   0.881077349    
+ Max norm displacement vector U in all slices (m) =    2.22909746E-10
+ Time steps done =         8100  out of        20000
+ Time steps remaining =        11900
+ Estimated remaining time in seconds =    10484.8203    
+ Estimated remaining time in hh:mm:ss =      2 h 54 m 44 s
+ Estimated total run time in seconds =    17621.5469    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 41 s
+ We have done    40.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         8200
+ Time:   0.107984997      seconds
+ Elapsed time in seconds =    7225.1408891080000     
+ Elapsed time in hh:mm:ss =      2 h 00 m 25 s
+ Mean elapsed time per time step in seconds =   0.881114721    
+ Max norm displacement vector U in all slices (m) =    2.16789475E-10
+ Time steps done =         8200  out of        20000
+ Time steps remaining =        11800
+ Estimated remaining time in seconds =    10397.1543    
+ Estimated remaining time in hh:mm:ss =      2 h 53 m 17 s
+ Estimated total run time in seconds =    17622.2949    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 42 s
+ We have done    41.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         8300
+ Time:   0.109485000      seconds
+ Elapsed time in seconds =    7312.9683996639997     
+ Elapsed time in hh:mm:ss =      2 h 01 m 52 s
+ Mean elapsed time per time step in seconds =   0.881080508    
+ Max norm displacement vector U in all slices (m) =    2.13437990E-10
+ Time steps done =         8300  out of        20000
+ Time steps remaining =        11700
+ Estimated remaining time in seconds =    10308.6426    
+ Estimated remaining time in hh:mm:ss =      2 h 51 m 48 s
+ Estimated total run time in seconds =    17621.6113    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 41 s
+ We have done    41.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         8400
+ Time:   0.110985003      seconds
+ Elapsed time in seconds =    7400.8280214549995     
+ Elapsed time in hh:mm:ss =      2 h 03 m 20 s
+ Mean elapsed time per time step in seconds =   0.881050944    
+ Max norm displacement vector U in all slices (m) =    2.13926668E-10
+ Time steps done =         8400  out of        20000
+ Time steps remaining =        11600
+ Estimated remaining time in seconds =    10220.1914    
+ Estimated remaining time in hh:mm:ss =      2 h 50 m 20 s
+ Estimated total run time in seconds =    17621.0195    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 41 s
+ We have done    42.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         8500
+ Time:   0.112484999      seconds
+ Elapsed time in seconds =    7488.3379484629995     
+ Elapsed time in hh:mm:ss =      2 h 04 m 48 s
+ Mean elapsed time per time step in seconds =   0.880980909    
+ Max norm displacement vector U in all slices (m) =    2.14624846E-10
+ Time steps done =         8500  out of        20000
+ Time steps remaining =        11500
+ Estimated remaining time in seconds =    10131.2803    
+ Estimated remaining time in hh:mm:ss =      2 h 48 m 51 s
+ Estimated total run time in seconds =    17619.6191    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 39 s
+ We have done    42.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         8600
+ Time:   0.113985002      seconds
+ Elapsed time in seconds =    7576.4520364800001     
+ Elapsed time in hh:mm:ss =      2 h 06 m 16 s
+ Mean elapsed time per time step in seconds =   0.880982816    
+ Max norm displacement vector U in all slices (m) =    2.15045565E-10
+ Time steps done =         8600  out of        20000
+ Time steps remaining =        11400
+ Estimated remaining time in seconds =    10043.2041    
+ Estimated remaining time in hh:mm:ss =      2 h 47 m 23 s
+ Estimated total run time in seconds =    17619.6562    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 39 s
+ We have done    43.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         8700
+ Time:   0.115484998      seconds
+ Elapsed time in seconds =    7664.5590719490001     
+ Elapsed time in hh:mm:ss =      2 h 07 m 44 s
+ Mean elapsed time per time step in seconds =   0.880983829    
+ Max norm displacement vector U in all slices (m) =    2.14572027E-10
+ Time steps done =         8700  out of        20000
+ Time steps remaining =        11300
+ Estimated remaining time in seconds =    9955.11719    
+ Estimated remaining time in hh:mm:ss =      2 h 45 m 55 s
+ Estimated total run time in seconds =    17619.6758    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 39 s
+ We have done    43.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         8800
+ Time:   0.116985001      seconds
+ Elapsed time in seconds =    7753.3620763489998     
+ Elapsed time in hh:mm:ss =      2 h 09 m 13 s
+ Mean elapsed time per time step in seconds =   0.881063879    
+ Max norm displacement vector U in all slices (m) =    2.15074611E-10
+ Time steps done =         8800  out of        20000
+ Time steps remaining =        11200
+ Estimated remaining time in seconds =    9867.91504    
+ Estimated remaining time in hh:mm:ss =      2 h 44 m 27 s
+ Estimated total run time in seconds =    17621.2773    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 41 s
+ We have done    44.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         8900
+ Time:   0.118485004      seconds
+ Elapsed time in seconds =    7841.5454617139994     
+ Elapsed time in hh:mm:ss =      2 h 10 m 41 s
+ Mean elapsed time per time step in seconds =   0.881072521    
+ Max norm displacement vector U in all slices (m) =    2.18981638E-10
+ Time steps done =         8900  out of        20000
+ Time steps remaining =        11100
+ Estimated remaining time in seconds =    9779.90527    
+ Estimated remaining time in hh:mm:ss =      2 h 42 m 59 s
+ Estimated total run time in seconds =    17621.4512    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 41 s
+ We have done    44.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         9000
+ Time:   0.119984999      seconds
+ Elapsed time in seconds =    7929.2422872239995     
+ Elapsed time in hh:mm:ss =      2 h 12 m 09 s
+ Mean elapsed time per time step in seconds =   0.881026924    
+ Max norm displacement vector U in all slices (m) =    2.22871749E-10
+ Time steps done =         9000  out of        20000
+ Time steps remaining =        11000
+ Estimated remaining time in seconds =    9691.29590    
+ Estimated remaining time in hh:mm:ss =      2 h 41 m 31 s
+ Estimated total run time in seconds =    17620.5391    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 40 s
+ We have done    45.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         9100
+ Time:   0.121485002      seconds
+ Elapsed time in seconds =    8017.1665972359997     
+ Elapsed time in hh:mm:ss =      2 h 13 m 37 s
+ Mean elapsed time per time step in seconds =   0.881007314    
+ Max norm displacement vector U in all slices (m) =    2.26374142E-10
+ Time steps done =         9100  out of        20000
+ Time steps remaining =        10900
+ Estimated remaining time in seconds =    9602.97949    
+ Estimated remaining time in hh:mm:ss =      2 h 40 m 02 s
+ Estimated total run time in seconds =    17620.1465    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 40 s
+ We have done    45.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         9200
+ Time:   0.122984998      seconds
+ Elapsed time in seconds =    8104.6420873199995     
+ Elapsed time in hh:mm:ss =      2 h 15 m 04 s
+ Mean elapsed time per time step in seconds =   0.880939364    
+ Max norm displacement vector U in all slices (m) =    2.28473851E-10
+ Time steps done =         9200  out of        20000
+ Time steps remaining =        10800
+ Estimated remaining time in seconds =    9514.14551    
+ Estimated remaining time in hh:mm:ss =      2 h 38 m 34 s
+ Estimated total run time in seconds =    17618.7871    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 38 s
+ We have done    46.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         9300
+ Time:   0.124485001      seconds
+ Elapsed time in seconds =    8192.6017230400012     
+ Elapsed time in hh:mm:ss =      2 h 16 m 32 s
+ Mean elapsed time per time step in seconds =   0.880924940    
+ Max norm displacement vector U in all slices (m) =    2.28199112E-10
+ Time steps done =         9300  out of        20000
+ Time steps remaining =        10700
+ Estimated remaining time in seconds =    9425.89648    
+ Estimated remaining time in hh:mm:ss =      2 h 37 m 05 s
+ Estimated total run time in seconds =    17618.4980    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 38 s
+ We have done    46.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         9400
+ Time:   0.125984997      seconds
+ Elapsed time in seconds =    8279.8124676430016     
+ Elapsed time in hh:mm:ss =      2 h 17 m 59 s
+ Mean elapsed time per time step in seconds =   0.880831122    
+ Max norm displacement vector U in all slices (m) =    2.24861366E-10
+ Time steps done =         9400  out of        20000
+ Time steps remaining =        10600
+ Estimated remaining time in seconds =    9336.80957    
+ Estimated remaining time in hh:mm:ss =      2 h 35 m 36 s
+ Estimated total run time in seconds =    17616.6230    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    47.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         9500
+ Time:   0.127485007      seconds
+ Elapsed time in seconds =    8368.1358356830006     
+ Elapsed time in hh:mm:ss =      2 h 19 m 28 s
+ Mean elapsed time per time step in seconds =   0.880856395    
+ Max norm displacement vector U in all slices (m) =    2.19429475E-10
+ Time steps done =         9500  out of        20000
+ Time steps remaining =        10500
+ Estimated remaining time in seconds =    9248.99219    
+ Estimated remaining time in hh:mm:ss =      2 h 34 m 08 s
+ Estimated total run time in seconds =    17617.1289    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    47.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         9600
+ Time:   0.128985003      seconds
+ Elapsed time in seconds =    8456.4906110950014     
+ Elapsed time in hh:mm:ss =      2 h 20 m 56 s
+ Mean elapsed time per time step in seconds =   0.880884409    
+ Max norm displacement vector U in all slices (m) =    2.12883308E-10
+ Time steps done =         9600  out of        20000
+ Time steps remaining =        10400
+ Estimated remaining time in seconds =    9161.19824    
+ Estimated remaining time in hh:mm:ss =      2 h 32 m 41 s
+ Estimated total run time in seconds =    17617.6895    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    48.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         9700
+ Time:   0.130484998      seconds
+ Elapsed time in seconds =    8545.1991807630002     
+ Elapsed time in hh:mm:ss =      2 h 22 m 25 s
+ Mean elapsed time per time step in seconds =   0.880948365    
+ Max norm displacement vector U in all slices (m) =    2.06204387E-10
+ Time steps done =         9700  out of        20000
+ Time steps remaining =        10300
+ Estimated remaining time in seconds =    9073.76855    
+ Estimated remaining time in hh:mm:ss =      2 h 31 m 13 s
+ Estimated total run time in seconds =    17618.9668    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 38 s
+ We have done    48.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #         9800
+ Time:   0.131984994      seconds
+ Elapsed time in seconds =    8634.7346152620012     
+ Elapsed time in hh:mm:ss =      2 h 23 m 54 s
+ Mean elapsed time per time step in seconds =   0.881095350    
+ Max norm displacement vector U in all slices (m) =    1.99914016E-10
+ Time steps done =         9800  out of        20000
+ Time steps remaining =        10200
+ Estimated remaining time in seconds =    8987.17285    
+ Estimated remaining time in hh:mm:ss =      2 h 29 m 47 s
+ Estimated total run time in seconds =    17621.9082    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 41 s
+ We have done    49.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #         9900
+ Time:   0.133485004      seconds
+ Elapsed time in seconds =    8722.7632633120011     
+ Elapsed time in hh:mm:ss =      2 h 25 m 22 s
+ Mean elapsed time per time step in seconds =   0.881087184    
+ Max norm displacement vector U in all slices (m) =    1.94523189E-10
+ Time steps done =         9900  out of        20000
+ Time steps remaining =        10100
+ Estimated remaining time in seconds =    8898.98047    
+ Estimated remaining time in hh:mm:ss =      2 h 28 m 18 s
+ Estimated total run time in seconds =    17621.7441    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 41 s
+ We have done    49.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        10000
+ Time:   0.134985000      seconds
+ Elapsed time in seconds =    8809.7182923880009     
+ Elapsed time in hh:mm:ss =      2 h 26 m 49 s
+ Mean elapsed time per time step in seconds =   0.880971849    
+ Max norm displacement vector U in all slices (m) =    1.90158320E-10
+ Time steps done =        10000  out of        20000
+ Time steps remaining =        10000
+ Estimated remaining time in seconds =    8809.71875    
+ Estimated remaining time in hh:mm:ss =      2 h 26 m 49 s
+ Estimated total run time in seconds =    17619.4375    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 39 s
+ We have done    50.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+
+ Total number of time steps done:        10000
+ Writing the seismograms in parallel took   0.192556545      seconds
+
+ Time step #        10100
+ Time:   0.136484995      seconds
+ Elapsed time in seconds =    8898.6097557540015     
+ Elapsed time in hh:mm:ss =      2 h 28 m 18 s
+ Mean elapsed time per time step in seconds =   0.881050467    
+ Max norm displacement vector U in all slices (m) =    1.87090787E-10
+ Time steps done =        10100  out of        20000
+ Time steps remaining =         9900
+ Estimated remaining time in seconds =    8722.39941    
+ Estimated remaining time in hh:mm:ss =      2 h 25 m 22 s
+ Estimated total run time in seconds =    17621.0098    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 41 s
+ We have done    50.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        10200
+ Time:   0.137985006      seconds
+ Elapsed time in seconds =    8987.5740255050005     
+ Elapsed time in hh:mm:ss =      2 h 29 m 47 s
+ Mean elapsed time per time step in seconds =   0.881134689    
+ Max norm displacement vector U in all slices (m) =    1.84928503E-10
+ Time steps done =        10200  out of        20000
+ Time steps remaining =         9800
+ Estimated remaining time in seconds =    8635.12012    
+ Estimated remaining time in hh:mm:ss =      2 h 23 m 55 s
+ Estimated total run time in seconds =    17622.6934    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 42 s
+ We have done    51.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        10300
+ Time:   0.139485002      seconds
+ Elapsed time in seconds =    9076.1013888240013     
+ Elapsed time in hh:mm:ss =      2 h 31 m 16 s
+ Mean elapsed time per time step in seconds =   0.881174862    
+ Max norm displacement vector U in all slices (m) =    1.83150176E-10
+ Time steps done =        10300  out of        20000
+ Time steps remaining =         9700
+ Estimated remaining time in seconds =    8547.39648    
+ Estimated remaining time in hh:mm:ss =      2 h 22 m 27 s
+ Estimated total run time in seconds =    17623.4980    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 43 s
+ We have done    51.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        10400
+ Time:   0.140984997      seconds
+ Elapsed time in seconds =    9163.6751346410001     
+ Elapsed time in hh:mm:ss =      2 h 32 m 43 s
+ Mean elapsed time per time step in seconds =   0.881122589    
+ Max norm displacement vector U in all slices (m) =    1.81413051E-10
+ Time steps done =        10400  out of        20000
+ Time steps remaining =         9600
+ Estimated remaining time in seconds =    8458.77734    
+ Estimated remaining time in hh:mm:ss =      2 h 20 m 58 s
+ Estimated total run time in seconds =    17622.4531    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 42 s
+ We have done    52.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        10500
+ Time:   0.142484993      seconds
+ Elapsed time in seconds =    9250.7541243950000     
+ Elapsed time in hh:mm:ss =      2 h 34 m 10 s
+ Mean elapsed time per time step in seconds =   0.881024182    
+ Max norm displacement vector U in all slices (m) =    1.80019166E-10
+ Time steps done =        10500  out of        20000
+ Time steps remaining =         9500
+ Estimated remaining time in seconds =    8369.72949    
+ Estimated remaining time in hh:mm:ss =      2 h 19 m 29 s
+ Estimated total run time in seconds =    17620.4844    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 40 s
+ We have done    52.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        10600
+ Time:   0.143985003      seconds
+ Elapsed time in seconds =    9338.5275867230011     
+ Elapsed time in hh:mm:ss =      2 h 35 m 38 s
+ Mean elapsed time per time step in seconds =   0.880993187    
+ Max norm displacement vector U in all slices (m) =    1.79555662E-10
+ Time steps done =        10600  out of        20000
+ Time steps remaining =         9400
+ Estimated remaining time in seconds =    8281.33594    
+ Estimated remaining time in hh:mm:ss =      2 h 18 m 01 s
+ Estimated total run time in seconds =    17619.8633    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 39 s
+ We have done    53.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        10700
+ Time:   0.145484999      seconds
+ Elapsed time in seconds =    9426.6467757400005     
+ Elapsed time in hh:mm:ss =      2 h 37 m 06 s
+ Mean elapsed time per time step in seconds =   0.880995035    
+ Max norm displacement vector U in all slices (m) =    1.80188892E-10
+ Time steps done =        10700  out of        20000
+ Time steps remaining =         9300
+ Estimated remaining time in seconds =    8193.25391    
+ Estimated remaining time in hh:mm:ss =      2 h 16 m 33 s
+ Estimated total run time in seconds =    17619.9004    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 39 s
+ We have done    53.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        10800
+ Time:   0.146984994      seconds
+ Elapsed time in seconds =    9513.4026957980004     
+ Elapsed time in hh:mm:ss =      2 h 38 m 33 s
+ Mean elapsed time per time step in seconds =   0.880870640    
+ Max norm displacement vector U in all slices (m) =    1.81426693E-10
+ Time steps done =        10800  out of        20000
+ Time steps remaining =         9200
+ Estimated remaining time in seconds =    8104.00977    
+ Estimated remaining time in hh:mm:ss =      2 h 15 m 04 s
+ Estimated total run time in seconds =    17617.4121    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    54.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        10900
+ Time:   0.148485005      seconds
+ Elapsed time in seconds =    9601.9388120280000     
+ Elapsed time in hh:mm:ss =      2 h 40 m 01 s
+ Mean elapsed time per time step in seconds =   0.880911827    
+ Max norm displacement vector U in all slices (m) =    1.82630286E-10
+ Time steps done =        10900  out of        20000
+ Time steps remaining =         9100
+ Estimated remaining time in seconds =    8016.29736    
+ Estimated remaining time in hh:mm:ss =      2 h 13 m 36 s
+ Estimated total run time in seconds =    17618.2363    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 38 s
+ We have done    54.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        11000
+ Time:   0.149985000      seconds
+ Elapsed time in seconds =    9689.5201158320015     
+ Elapsed time in hh:mm:ss =      2 h 41 m 29 s
+ Mean elapsed time per time step in seconds =   0.880865455    
+ Max norm displacement vector U in all slices (m) =    1.83421334E-10
+ Time steps done =        11000  out of        20000
+ Time steps remaining =         9000
+ Estimated remaining time in seconds =    7927.78906    
+ Estimated remaining time in hh:mm:ss =      2 h 12 m 07 s
+ Estimated total run time in seconds =    17617.3086    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    55.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        11100
+ Time:   0.151484996      seconds
+ Elapsed time in seconds =    9776.7719118880013     
+ Elapsed time in hh:mm:ss =      2 h 42 m 56 s
+ Mean elapsed time per time step in seconds =   0.880790234    
+ Max norm displacement vector U in all slices (m) =    1.83341856E-10
+ Time steps done =        11100  out of        20000
+ Time steps remaining =         8900
+ Estimated remaining time in seconds =    7839.03320    
+ Estimated remaining time in hh:mm:ss =      2 h 10 m 39 s
+ Estimated total run time in seconds =    17615.8047    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 35 s
+ We have done    55.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        11200
+ Time:   0.152985007      seconds
+ Elapsed time in seconds =    9865.2729077420008     
+ Elapsed time in hh:mm:ss =      2 h 44 m 25 s
+ Mean elapsed time per time step in seconds =   0.880827963    
+ Max norm displacement vector U in all slices (m) =    1.81522991E-10
+ Time steps done =        11200  out of        20000
+ Time steps remaining =         8800
+ Estimated remaining time in seconds =    7751.28564    
+ Estimated remaining time in hh:mm:ss =      2 h 09 m 11 s
+ Estimated total run time in seconds =    17616.5586    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    56.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        11300
+ Time:   0.154485002      seconds
+ Elapsed time in seconds =    9953.2262926530002     
+ Elapsed time in hh:mm:ss =      2 h 45 m 53 s
+ Mean elapsed time per time step in seconds =   0.880816460    
+ Max norm displacement vector U in all slices (m) =    1.77666160E-10
+ Time steps done =        11300  out of        20000
+ Time steps remaining =         8700
+ Estimated remaining time in seconds =    7663.10352    
+ Estimated remaining time in hh:mm:ss =      2 h 07 m 43 s
+ Estimated total run time in seconds =    17616.3301    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    56.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        11400
+ Time:   0.155984998      seconds
+ Elapsed time in seconds =    10041.429978198001     
+ Elapsed time in hh:mm:ss =      2 h 47 m 21 s
+ Mean elapsed time per time step in seconds =   0.880827188    
+ Max norm displacement vector U in all slices (m) =    1.72264855E-10
+ Time steps done =        11400  out of        20000
+ Time steps remaining =         8600
+ Estimated remaining time in seconds =    7575.11377    
+ Estimated remaining time in hh:mm:ss =      2 h 06 m 15 s
+ Estimated total run time in seconds =    17616.5430    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    57.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        11500
+ Time:   0.157484993      seconds
+ Elapsed time in seconds =    10128.472577562001     
+ Elapsed time in hh:mm:ss =      2 h 48 m 48 s
+ Mean elapsed time per time step in seconds =   0.880736768    
+ Max norm displacement vector U in all slices (m) =    1.66157754E-10
+ Time steps done =        11500  out of        20000
+ Time steps remaining =         8500
+ Estimated remaining time in seconds =    7486.26221    
+ Estimated remaining time in hh:mm:ss =      2 h 04 m 46 s
+ Estimated total run time in seconds =    17614.7344    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 34 s
+ We have done    57.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        11600
+ Time:   0.158985004      seconds
+ Elapsed time in seconds =    10216.974271258001     
+ Elapsed time in hh:mm:ss =      2 h 50 m 16 s
+ Mean elapsed time per time step in seconds =   0.880773664    
+ Max norm displacement vector U in all slices (m) =    1.60173444E-10
+ Time steps done =        11600  out of        20000
+ Time steps remaining =         8400
+ Estimated remaining time in seconds =    7398.49854    
+ Estimated remaining time in hh:mm:ss =      2 h 03 m 18 s
+ Estimated total run time in seconds =    17615.4727    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 35 s
+ We have done    58.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        11700
+ Time:   0.160484999      seconds
+ Elapsed time in seconds =    10304.169924968000     
+ Elapsed time in hh:mm:ss =      2 h 51 m 44 s
+ Mean elapsed time per time step in seconds =   0.880698264    
+ Max norm displacement vector U in all slices (m) =    1.54923102E-10
+ Time steps done =        11700  out of        20000
+ Time steps remaining =         8300
+ Estimated remaining time in seconds =    7309.79590    
+ Estimated remaining time in hh:mm:ss =      2 h 01 m 49 s
+ Estimated total run time in seconds =    17613.9648    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    58.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        11800
+ Time:   0.161984995      seconds
+ Elapsed time in seconds =    10390.735124422001     
+ Elapsed time in hh:mm:ss =      2 h 53 m 10 s
+ Mean elapsed time per time step in seconds =   0.880570769    
+ Max norm displacement vector U in all slices (m) =    1.50594509E-10
+ Time steps done =        11800  out of        20000
+ Time steps remaining =         8200
+ Estimated remaining time in seconds =    7220.68018    
+ Estimated remaining time in hh:mm:ss =      2 h 00 m 20 s
+ Estimated total run time in seconds =    17611.4160    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 31 s
+ We have done    59.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        11900
+ Time:   0.163485005      seconds
+ Elapsed time in seconds =    10478.786143954001     
+ Elapsed time in hh:mm:ss =      2 h 54 m 38 s
+ Mean elapsed time per time step in seconds =   0.880570292    
+ Max norm displacement vector U in all slices (m) =    1.47039325E-10
+ Time steps done =        11900  out of        20000
+ Time steps remaining =         8100
+ Estimated remaining time in seconds =    7132.61914    
+ Estimated remaining time in hh:mm:ss =      1 h 58 m 52 s
+ Estimated total run time in seconds =    17611.4062    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 31 s
+ We have done    59.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        12000
+ Time:   0.164985001      seconds
+ Elapsed time in seconds =    10567.192472503000     
+ Elapsed time in hh:mm:ss =      2 h 56 m 07 s
+ Mean elapsed time per time step in seconds =   0.880599380    
+ Max norm displacement vector U in all slices (m) =    1.44645504E-10
+ Time steps done =        12000  out of        20000
+ Time steps remaining =         8000
+ Estimated remaining time in seconds =    7044.79492    
+ Estimated remaining time in hh:mm:ss =      1 h 57 m 24 s
+ Estimated total run time in seconds =    17611.9883    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 31 s
+ We have done    60.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+
+ Total number of time steps done:        12000
+ Writing the seismograms in parallel took   0.210686177      seconds
+
+ Time step #        12100
+ Time:   0.166484997      seconds
+ Elapsed time in seconds =    10656.224566051000     
+ Elapsed time in hh:mm:ss =      2 h 57 m 36 s
+ Mean elapsed time per time step in seconds =   0.880679727    
+ Max norm displacement vector U in all slices (m) =    1.43327655E-10
+ Time steps done =        12100  out of        20000
+ Time steps remaining =         7900
+ Estimated remaining time in seconds =    6957.36963    
+ Estimated remaining time in hh:mm:ss =      1 h 55 m 57 s
+ Estimated total run time in seconds =    17613.5938    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    60.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        12200
+ Time:   0.167985007      seconds
+ Elapsed time in seconds =    10744.343144839000     
+ Elapsed time in hh:mm:ss =      2 h 59 m 04 s
+ Mean elapsed time per time step in seconds =   0.880683839    
+ Max norm displacement vector U in all slices (m) =    1.42558423E-10
+ Time steps done =        12200  out of        20000
+ Time steps remaining =         7800
+ Estimated remaining time in seconds =    6869.33398    
+ Estimated remaining time in hh:mm:ss =      1 h 54 m 29 s
+ Estimated total run time in seconds =    17613.6777    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    61.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        12300
+ Time:   0.169485003      seconds
+ Elapsed time in seconds =    10832.340151644001     
+ Elapsed time in hh:mm:ss =      3 h 00 m 32 s
+ Mean elapsed time per time step in seconds =   0.880678058    
+ Max norm displacement vector U in all slices (m) =    1.42138828E-10
+ Time steps done =        12300  out of        20000
+ Time steps remaining =         7700
+ Estimated remaining time in seconds =    6781.22119    
+ Estimated remaining time in hh:mm:ss =      1 h 53 m 01 s
+ Estimated total run time in seconds =    17613.5605    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    61.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        12400
+ Time:   0.170984998      seconds
+ Elapsed time in seconds =    10920.063463524000     
+ Elapsed time in hh:mm:ss =      3 h 02 m 00 s
+ Mean elapsed time per time step in seconds =   0.880650282    
+ Max norm displacement vector U in all slices (m) =    1.41948925E-10
+ Time steps done =        12400  out of        20000
+ Time steps remaining =         7600
+ Estimated remaining time in seconds =    6692.94189    
+ Estimated remaining time in hh:mm:ss =      1 h 51 m 32 s
+ Estimated total run time in seconds =    17613.0059    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    62.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        12500
+ Time:   0.172484994      seconds
+ Elapsed time in seconds =    11007.980009718001     
+ Elapsed time in hh:mm:ss =      3 h 03 m 27 s
+ Mean elapsed time per time step in seconds =   0.880638421    
+ Max norm displacement vector U in all slices (m) =    1.42225051E-10
+ Time steps done =        12500  out of        20000
+ Time steps remaining =         7500
+ Estimated remaining time in seconds =    6604.78809    
+ Estimated remaining time in hh:mm:ss =      1 h 50 m 04 s
+ Estimated total run time in seconds =    17612.7676    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 32 s
+ We have done    62.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        12600
+ Time:   0.173985004      seconds
+ Elapsed time in seconds =    11094.787836636000     
+ Elapsed time in hh:mm:ss =      3 h 04 m 54 s
+ Mean elapsed time per time step in seconds =   0.880538702    
+ Max norm displacement vector U in all slices (m) =    1.42424461E-10
+ Time steps done =        12600  out of        20000
+ Time steps remaining =         7400
+ Estimated remaining time in seconds =    6515.98633    
+ Estimated remaining time in hh:mm:ss =      1 h 48 m 35 s
+ Estimated total run time in seconds =    17610.7734    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    63.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        12700
+ Time:   0.175485000      seconds
+ Elapsed time in seconds =    11182.783016340001     
+ Elapsed time in hh:mm:ss =      3 h 06 m 22 s
+ Mean elapsed time per time step in seconds =   0.880534112    
+ Max norm displacement vector U in all slices (m) =    1.42119663E-10
+ Time steps done =        12700  out of        20000
+ Time steps remaining =         7300
+ Estimated remaining time in seconds =    6427.89893    
+ Estimated remaining time in hh:mm:ss =      1 h 47 m 07 s
+ Estimated total run time in seconds =    17610.6816    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    63.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        12800
+ Time:   0.176984996      seconds
+ Elapsed time in seconds =    11270.436585585001     
+ Elapsed time in hh:mm:ss =      3 h 07 m 50 s
+ Mean elapsed time per time step in seconds =   0.880502880    
+ Max norm displacement vector U in all slices (m) =    1.41128886E-10
+ Time steps done =        12800  out of        20000
+ Time steps remaining =         7200
+ Estimated remaining time in seconds =    6339.62061    
+ Estimated remaining time in hh:mm:ss =      1 h 45 m 39 s
+ Estimated total run time in seconds =    17610.0566    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    64.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        12900
+ Time:   0.178485006      seconds
+ Elapsed time in seconds =    11358.345275740001     
+ Elapsed time in hh:mm:ss =      3 h 09 m 18 s
+ Mean elapsed time per time step in seconds =   0.880491853    
+ Max norm displacement vector U in all slices (m) =    1.38922943E-10
+ Time steps done =        12900  out of        20000
+ Time steps remaining =         7100
+ Estimated remaining time in seconds =    6251.49219    
+ Estimated remaining time in hh:mm:ss =      1 h 44 m 11 s
+ Estimated total run time in seconds =    17609.8379    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 29 s
+ We have done    64.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        13000
+ Time:   0.179985002      seconds
+ Elapsed time in seconds =    11446.480927448001     
+ Elapsed time in hh:mm:ss =      3 h 10 m 46 s
+ Mean elapsed time per time step in seconds =   0.880498528    
+ Max norm displacement vector U in all slices (m) =    1.35823713E-10
+ Time steps done =        13000  out of        20000
+ Time steps remaining =         7000
+ Estimated remaining time in seconds =    6163.48975    
+ Estimated remaining time in hh:mm:ss =      1 h 42 m 43 s
+ Estimated total run time in seconds =    17609.9707    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 29 s
+ We have done    65.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        13100
+ Time:   0.181484997      seconds
+ Elapsed time in seconds =    11534.338876189000     
+ Elapsed time in hh:mm:ss =      3 h 12 m 14 s
+ Mean elapsed time per time step in seconds =   0.880483866    
+ Max norm displacement vector U in all slices (m) =    1.37332201E-10
+ Time steps done =        13100  out of        20000
+ Time steps remaining =         6900
+ Estimated remaining time in seconds =    6075.33887    
+ Estimated remaining time in hh:mm:ss =      1 h 41 m 15 s
+ Estimated total run time in seconds =    17609.6777    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 29 s
+ We have done    65.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        13200
+ Time:   0.182984993      seconds
+ Elapsed time in seconds =    11622.598224962001     
+ Elapsed time in hh:mm:ss =      3 h 13 m 42 s
+ Mean elapsed time per time step in seconds =   0.880499840    
+ Max norm displacement vector U in all slices (m) =    1.38099851E-10
+ Time steps done =        13200  out of        20000
+ Time steps remaining =         6800
+ Estimated remaining time in seconds =    5987.39893    
+ Estimated remaining time in hh:mm:ss =      1 h 39 m 47 s
+ Estimated total run time in seconds =    17609.9980    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 29 s
+ We have done    66.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        13300
+ Time:   0.184485003      seconds
+ Elapsed time in seconds =    11711.500645483000     
+ Elapsed time in hh:mm:ss =      3 h 15 m 11 s
+ Mean elapsed time per time step in seconds =   0.880563974    
+ Max norm displacement vector U in all slices (m) =    1.37887687E-10
+ Time steps done =        13300  out of        20000
+ Time steps remaining =         6700
+ Estimated remaining time in seconds =    5899.77832    
+ Estimated remaining time in hh:mm:ss =      1 h 38 m 19 s
+ Estimated total run time in seconds =    17611.2793    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 31 s
+ We have done    66.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        13400
+ Time:   0.185984999      seconds
+ Elapsed time in seconds =    11799.065377176001     
+ Elapsed time in hh:mm:ss =      3 h 16 m 39 s
+ Mean elapsed time per time step in seconds =   0.880527258    
+ Max norm displacement vector U in all slices (m) =    1.36304759E-10
+ Time steps done =        13400  out of        20000
+ Time steps remaining =         6600
+ Estimated remaining time in seconds =    5811.47998    
+ Estimated remaining time in hh:mm:ss =      1 h 36 m 51 s
+ Estimated total run time in seconds =    17610.5449    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    67.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        13500
+ Time:   0.187484995      seconds
+ Elapsed time in seconds =    11886.959993247001     
+ Elapsed time in hh:mm:ss =      3 h 18 m 06 s
+ Mean elapsed time per time step in seconds =   0.880515575    
+ Max norm displacement vector U in all slices (m) =    1.33729222E-10
+ Time steps done =        13500  out of        20000
+ Time steps remaining =         6500
+ Estimated remaining time in seconds =    5723.35107    
+ Estimated remaining time in hh:mm:ss =      1 h 35 m 23 s
+ Estimated total run time in seconds =    17610.3105    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    67.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        13600
+ Time:   0.188985005      seconds
+ Elapsed time in seconds =    11974.733154499001     
+ Elapsed time in hh:mm:ss =      3 h 19 m 34 s
+ Mean elapsed time per time step in seconds =   0.880495071    
+ Max norm displacement vector U in all slices (m) =    1.30455882E-10
+ Time steps done =        13600  out of        20000
+ Time steps remaining =         6400
+ Estimated remaining time in seconds =    5635.16846    
+ Estimated remaining time in hh:mm:ss =      1 h 33 m 55 s
+ Estimated total run time in seconds =    17609.9023    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 29 s
+ We have done    68.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        13700
+ Time:   0.190485001      seconds
+ Elapsed time in seconds =    12063.411936682001     
+ Elapsed time in hh:mm:ss =      3 h 21 m 03 s
+ Mean elapsed time per time step in seconds =   0.880541027    
+ Max norm displacement vector U in all slices (m) =    1.26944344E-10
+ Time steps done =        13700  out of        20000
+ Time steps remaining =         6300
+ Estimated remaining time in seconds =    5547.40820    
+ Estimated remaining time in hh:mm:ss =      1 h 32 m 27 s
+ Estimated total run time in seconds =    17610.8203    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    68.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        13800
+ Time:   0.191984996      seconds
+ Elapsed time in seconds =    12151.525352088001     
+ Elapsed time in hh:mm:ss =      3 h 22 m 31 s
+ Mean elapsed time per time step in seconds =   0.880545318    
+ Max norm displacement vector U in all slices (m) =    1.23411087E-10
+ Time steps done =        13800  out of        20000
+ Time steps remaining =         6200
+ Estimated remaining time in seconds =    5459.38086    
+ Estimated remaining time in hh:mm:ss =      1 h 30 m 59 s
+ Estimated total run time in seconds =    17610.9062    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    69.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        13900
+ Time:   0.193485007      seconds
+ Elapsed time in seconds =    12241.707063696002     
+ Elapsed time in hh:mm:ss =      3 h 24 m 01 s
+ Mean elapsed time per time step in seconds =   0.880698323    
+ Max norm displacement vector U in all slices (m) =    1.19582955E-10
+ Time steps done =        13900  out of        20000
+ Time steps remaining =         6100
+ Estimated remaining time in seconds =    5372.25977    
+ Estimated remaining time in hh:mm:ss =      1 h 29 m 32 s
+ Estimated total run time in seconds =    17613.9668    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    69.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        14000
+ Time:   0.194985002      seconds
+ Elapsed time in seconds =    12329.869248542002     
+ Elapsed time in hh:mm:ss =      3 h 25 m 29 s
+ Mean elapsed time per time step in seconds =   0.880704939    
+ Max norm displacement vector U in all slices (m) =    1.16081728E-10
+ Time steps done =        14000  out of        20000
+ Time steps remaining =         6000
+ Estimated remaining time in seconds =    5284.22949    
+ Estimated remaining time in hh:mm:ss =      1 h 28 m 04 s
+ Estimated total run time in seconds =    17614.0996    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 34 s
+ We have done    70.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+
+ Total number of time steps done:        14000
+ Writing the seismograms in parallel took   0.220459133      seconds
+
+ Time step #        14100
+ Time:   0.196484998      seconds
+ Elapsed time in seconds =    12418.632680594001     
+ Elapsed time in hh:mm:ss =      3 h 26 m 58 s
+ Mean elapsed time per time step in seconds =   0.880754113    
+ Max norm displacement vector U in all slices (m) =    1.13259159E-10
+ Time steps done =        14100  out of        20000
+ Time steps remaining =         5900
+ Estimated remaining time in seconds =    5196.44922    
+ Estimated remaining time in hh:mm:ss =      1 h 26 m 36 s
+ Estimated total run time in seconds =    17615.0820    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 35 s
+ We have done    70.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        14200
+ Time:   0.197984993      seconds
+ Elapsed time in seconds =    12506.734159160002     
+ Elapsed time in hh:mm:ss =      3 h 28 m 26 s
+ Mean elapsed time per time step in seconds =   0.880755901    
+ Max norm displacement vector U in all slices (m) =    1.10826827E-10
+ Time steps done =        14200  out of        20000
+ Time steps remaining =         5800
+ Estimated remaining time in seconds =    5108.38428    
+ Estimated remaining time in hh:mm:ss =      1 h 25 m 08 s
+ Estimated total run time in seconds =    17615.1191    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 35 s
+ We have done    71.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        14300
+ Time:   0.199485004      seconds
+ Elapsed time in seconds =    12594.409494114001     
+ Elapsed time in hh:mm:ss =      3 h 29 m 54 s
+ Mean elapsed time per time step in seconds =   0.880727947    
+ Max norm displacement vector U in all slices (m) =    1.08905725E-10
+ Time steps done =        14300  out of        20000
+ Time steps remaining =         5700
+ Estimated remaining time in seconds =    5020.14941    
+ Estimated remaining time in hh:mm:ss =      1 h 23 m 40 s
+ Estimated total run time in seconds =    17614.5586    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 34 s
+ We have done    71.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        14400
+ Time:   0.200985000      seconds
+ Elapsed time in seconds =    12681.767578960000     
+ Elapsed time in hh:mm:ss =      3 h 31 m 21 s
+ Mean elapsed time per time step in seconds =   0.880678296    
+ Max norm displacement vector U in all slices (m) =    1.07952453E-10
+ Time steps done =        14400  out of        20000
+ Time steps remaining =         5600
+ Estimated remaining time in seconds =    4931.79834    
+ Estimated remaining time in hh:mm:ss =      1 h 22 m 11 s
+ Estimated total run time in seconds =    17613.5664    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    72.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        14500
+ Time:   0.202484995      seconds
+ Elapsed time in seconds =    12770.240042337000     
+ Elapsed time in hh:mm:ss =      3 h 32 m 50 s
+ Mean elapsed time per time step in seconds =   0.880706191    
+ Max norm displacement vector U in all slices (m) =    1.07686138E-10
+ Time steps done =        14500  out of        20000
+ Time steps remaining =         5500
+ Estimated remaining time in seconds =    4843.88428    
+ Estimated remaining time in hh:mm:ss =      1 h 20 m 43 s
+ Estimated total run time in seconds =    17614.1250    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 34 s
+ We have done    72.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        14600
+ Time:   0.203985006      seconds
+ Elapsed time in seconds =    12857.893091832000     
+ Elapsed time in hh:mm:ss =      3 h 34 m 17 s
+ Mean elapsed time per time step in seconds =   0.880677581    
+ Max norm displacement vector U in all slices (m) =    1.07784309E-10
+ Time steps done =        14600  out of        20000
+ Time steps remaining =         5400
+ Estimated remaining time in seconds =    4755.65918    
+ Estimated remaining time in hh:mm:ss =      1 h 19 m 15 s
+ Estimated total run time in seconds =    17613.5527    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    73.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        14700
+ Time:   0.205485001      seconds
+ Elapsed time in seconds =    12945.818860605001     
+ Elapsed time in hh:mm:ss =      3 h 35 m 45 s
+ Mean elapsed time per time step in seconds =   0.880667925    
+ Max norm displacement vector U in all slices (m) =    1.07820364E-10
+ Time steps done =        14700  out of        20000
+ Time steps remaining =         5300
+ Estimated remaining time in seconds =    4667.54004    
+ Estimated remaining time in hh:mm:ss =      1 h 17 m 47 s
+ Estimated total run time in seconds =    17613.3594    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    73.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        14800
+ Time:   0.206984997      seconds
+ Elapsed time in seconds =    13033.303655135001     
+ Elapsed time in hh:mm:ss =      3 h 37 m 13 s
+ Mean elapsed time per time step in seconds =   0.880628645    
+ Max norm displacement vector U in all slices (m) =    1.07573790E-10
+ Time steps done =        14800  out of        20000
+ Time steps remaining =         5200
+ Estimated remaining time in seconds =    4579.26904    
+ Estimated remaining time in hh:mm:ss =      1 h 16 m 19 s
+ Estimated total run time in seconds =    17612.5723    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 32 s
+ We have done    74.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        14900
+ Time:   0.208485007      seconds
+ Elapsed time in seconds =    13121.068318769001     
+ Elapsed time in hh:mm:ss =      3 h 38 m 41 s
+ Mean elapsed time per time step in seconds =   0.880608618    
+ Max norm displacement vector U in all slices (m) =    1.06364563E-10
+ Time steps done =        14900  out of        20000
+ Time steps remaining =         5100
+ Estimated remaining time in seconds =    4491.10400    
+ Estimated remaining time in hh:mm:ss =      1 h 14 m 51 s
+ Estimated total run time in seconds =    17612.1719    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 32 s
+ We have done    74.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        15000
+ Time:   0.209985003      seconds
+ Elapsed time in seconds =    13209.708124929000     
+ Elapsed time in hh:mm:ss =      3 h 40 m 09 s
+ Mean elapsed time per time step in seconds =   0.880647182    
+ Max norm displacement vector U in all slices (m) =    1.04697036E-10
+ Time steps done =        15000  out of        20000
+ Time steps remaining =         5000
+ Estimated remaining time in seconds =    4403.23584    
+ Estimated remaining time in hh:mm:ss =      1 h 13 m 23 s
+ Estimated total run time in seconds =    17612.9434    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 32 s
+ We have done    75.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        15100
+ Time:   0.211484998      seconds
+ Elapsed time in seconds =    13296.519015162001     
+ Elapsed time in hh:mm:ss =      3 h 41 m 36 s
+ Mean elapsed time per time step in seconds =   0.880564153    
+ Max norm displacement vector U in all slices (m) =    1.03356421E-10
+ Time steps done =        15100  out of        20000
+ Time steps remaining =         4900
+ Estimated remaining time in seconds =    4314.76465    
+ Estimated remaining time in hh:mm:ss =      1 h 11 m 54 s
+ Estimated total run time in seconds =    17611.2832    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 31 s
+ We have done    75.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        15200
+ Time:   0.212984994      seconds
+ Elapsed time in seconds =    13383.904942124002     
+ Elapsed time in hh:mm:ss =      3 h 43 m 03 s
+ Mean elapsed time per time step in seconds =   0.880520046    
+ Max norm displacement vector U in all slices (m) =    1.01334552E-10
+ Time steps done =        15200  out of        20000
+ Time steps remaining =         4800
+ Estimated remaining time in seconds =    4226.49609    
+ Estimated remaining time in hh:mm:ss =      1 h 10 m 26 s
+ Estimated total run time in seconds =    17610.4004    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    76.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        15300
+ Time:   0.214485005      seconds
+ Elapsed time in seconds =    13472.017920538001     
+ Elapsed time in hh:mm:ss =      3 h 44 m 32 s
+ Mean elapsed time per time step in seconds =   0.880524039    
+ Max norm displacement vector U in all slices (m) =    1.01041432E-10
+ Time steps done =        15300  out of        20000
+ Time steps remaining =         4700
+ Estimated remaining time in seconds =    4138.46289    
+ Estimated remaining time in hh:mm:ss =      1 h 08 m 58 s
+ Estimated total run time in seconds =    17610.4805    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    76.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        15400
+ Time:   0.215985000      seconds
+ Elapsed time in seconds =    13559.680845449000     
+ Elapsed time in hh:mm:ss =      3 h 45 m 59 s
+ Mean elapsed time per time step in seconds =   0.880498767    
+ Max norm displacement vector U in all slices (m) =    1.00123319E-10
+ Time steps done =        15400  out of        20000
+ Time steps remaining =         4600
+ Estimated remaining time in seconds =    4050.29419    
+ Estimated remaining time in hh:mm:ss =      1 h 07 m 30 s
+ Estimated total run time in seconds =    17609.9746    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 29 s
+ We have done    77.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        15500
+ Time:   0.217484996      seconds
+ Elapsed time in seconds =    13648.864605859000     
+ Elapsed time in hh:mm:ss =      3 h 47 m 28 s
+ Mean elapsed time per time step in seconds =   0.880571902    
+ Max norm displacement vector U in all slices (m) =    9.87537135E-11
+ Time steps done =        15500  out of        20000
+ Time steps remaining =         4500
+ Estimated remaining time in seconds =    3962.57349    
+ Estimated remaining time in hh:mm:ss =      1 h 06 m 02 s
+ Estimated total run time in seconds =    17611.4375    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 31 s
+ We have done    77.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        15600
+ Time:   0.218985006      seconds
+ Elapsed time in seconds =    13737.658660536001     
+ Elapsed time in hh:mm:ss =      3 h 48 m 57 s
+ Mean elapsed time per time step in seconds =   0.880619168    
+ Max norm displacement vector U in all slices (m) =    9.67768921E-11
+ Time steps done =        15600  out of        20000
+ Time steps remaining =         4400
+ Estimated remaining time in seconds =    3874.72412    
+ Estimated remaining time in hh:mm:ss =      1 h 04 m 34 s
+ Estimated total run time in seconds =    17612.3828    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 32 s
+ We have done    78.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        15700
+ Time:   0.220485002      seconds
+ Elapsed time in seconds =    13825.971196080001     
+ Elapsed time in hh:mm:ss =      3 h 50 m 25 s
+ Mean elapsed time per time step in seconds =   0.880635083    
+ Max norm displacement vector U in all slices (m) =    9.44388595E-11
+ Time steps done =        15700  out of        20000
+ Time steps remaining =         4300
+ Estimated remaining time in seconds =    3786.73096    
+ Estimated remaining time in hh:mm:ss =      1 h 03 m 06 s
+ Estimated total run time in seconds =    17612.7031    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 32 s
+ We have done    78.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        15800
+ Time:   0.221984997      seconds
+ Elapsed time in seconds =    13914.227381261000     
+ Elapsed time in hh:mm:ss =      3 h 51 m 54 s
+ Mean elapsed time per time step in seconds =   0.880647302    
+ Max norm displacement vector U in all slices (m) =    9.19103751E-11
+ Time steps done =        15800  out of        20000
+ Time steps remaining =         4200
+ Estimated remaining time in seconds =    3698.71875    
+ Estimated remaining time in hh:mm:ss =      1 h 01 m 38 s
+ Estimated total run time in seconds =    17612.9453    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 32 s
+ We have done    79.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        15900
+ Time:   0.223484993      seconds
+ Elapsed time in seconds =    14002.989422716000     
+ Elapsed time in hh:mm:ss =      3 h 53 m 22 s
+ Mean elapsed time per time step in seconds =   0.880691171    
+ Max norm displacement vector U in all slices (m) =    8.96009378E-11
+ Time steps done =        15900  out of        20000
+ Time steps remaining =         4100
+ Estimated remaining time in seconds =    3610.83374    
+ Estimated remaining time in hh:mm:ss =      1 h 00 m 10 s
+ Estimated total run time in seconds =    17613.8223    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    79.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        16000
+ Time:   0.224985003      seconds
+ Elapsed time in seconds =    14092.256390490000     
+ Elapsed time in hh:mm:ss =      3 h 54 m 52 s
+ Mean elapsed time per time step in seconds =   0.880766034    
+ Max norm displacement vector U in all slices (m) =    8.82354398E-11
+ Time steps done =        16000  out of        20000
+ Time steps remaining =         4000
+ Estimated remaining time in seconds =    3523.06421    
+ Estimated remaining time in hh:mm:ss =      0 h 58 m 43 s
+ Estimated total run time in seconds =    17615.3203    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 35 s
+ We have done    80.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+
+ Total number of time steps done:        16000
+ Writing the seismograms in parallel took   0.220583171      seconds
+
+ Time step #        16100
+ Time:   0.226484999      seconds
+ Elapsed time in seconds =    14181.229022589001     
+ Elapsed time in hh:mm:ss =      3 h 56 m 21 s
+ Mean elapsed time per time step in seconds =   0.880821705    
+ Max norm displacement vector U in all slices (m) =    8.88003490E-11
+ Time steps done =        16100  out of        20000
+ Time steps remaining =         3900
+ Estimated remaining time in seconds =    3435.20459    
+ Estimated remaining time in hh:mm:ss =      0 h 57 m 15 s
+ Estimated total run time in seconds =    17616.4336    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    80.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        16200
+ Time:   0.227984995      seconds
+ Elapsed time in seconds =    14269.595212199001     
+ Elapsed time in hh:mm:ss =      3 h 57 m 49 s
+ Mean elapsed time per time step in seconds =   0.880839229    
+ Max norm displacement vector U in all slices (m) =    8.91057783E-11
+ Time steps done =        16200  out of        20000
+ Time steps remaining =         3800
+ Estimated remaining time in seconds =    3347.18896    
+ Estimated remaining time in hh:mm:ss =      0 h 55 m 47 s
+ Estimated total run time in seconds =    17616.7852    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    81.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        16300
+ Time:   0.229485005      seconds
+ Elapsed time in seconds =    14357.392298323000     
+ Elapsed time in hh:mm:ss =      3 h 59 m 17 s
+ Mean elapsed time per time step in seconds =   0.880821586    
+ Max norm displacement vector U in all slices (m) =    8.96496766E-11
+ Time steps done =        16300  out of        20000
+ Time steps remaining =         3700
+ Estimated remaining time in seconds =    3259.04004    
+ Estimated remaining time in hh:mm:ss =      0 h 54 m 19 s
+ Estimated total run time in seconds =    17616.4316    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    81.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        16400
+ Time:   0.230985001      seconds
+ Elapsed time in seconds =    14444.542828326001     
+ Elapsed time in hh:mm:ss =      4 h 00 m 44 s
+ Mean elapsed time per time step in seconds =   0.880764782    
+ Max norm displacement vector U in all slices (m) =    9.02906430E-11
+ Time steps done =        16400  out of        20000
+ Time steps remaining =         3600
+ Estimated remaining time in seconds =    3170.75342    
+ Estimated remaining time in hh:mm:ss =      0 h 52 m 50 s
+ Estimated total run time in seconds =    17615.2969    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 35 s
+ We have done    82.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        16500
+ Time:   0.232484996      seconds
+ Elapsed time in seconds =    14531.380316082001     
+ Elapsed time in hh:mm:ss =      4 h 02 m 11 s
+ Mean elapsed time per time step in seconds =   0.880689740    
+ Max norm displacement vector U in all slices (m) =    9.08469550E-11
+ Time steps done =        16500  out of        20000
+ Time steps remaining =         3500
+ Estimated remaining time in seconds =    3082.41406    
+ Estimated remaining time in hh:mm:ss =      0 h 51 m 22 s
+ Estimated total run time in seconds =    17613.7949    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    82.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        16600
+ Time:   0.233985007      seconds
+ Elapsed time in seconds =    14620.286585410000     
+ Elapsed time in hh:mm:ss =      4 h 03 m 40 s
+ Mean elapsed time per time step in seconds =   0.880740166    
+ Max norm displacement vector U in all slices (m) =    9.13031942E-11
+ Time steps done =        16600  out of        20000
+ Time steps remaining =         3400
+ Estimated remaining time in seconds =    2994.51660    
+ Estimated remaining time in hh:mm:ss =      0 h 49 m 54 s
+ Estimated total run time in seconds =    17614.8027    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 34 s
+ We have done    83.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        16700
+ Time:   0.235485002      seconds
+ Elapsed time in seconds =    14707.935539549000     
+ Elapsed time in hh:mm:ss =      4 h 05 m 07 s
+ Mean elapsed time per time step in seconds =   0.880714715    
+ Max norm displacement vector U in all slices (m) =    9.14162912E-11
+ Time steps done =        16700  out of        20000
+ Time steps remaining =         3300
+ Estimated remaining time in seconds =    2906.35840    
+ Estimated remaining time in hh:mm:ss =      0 h 48 m 26 s
+ Estimated total run time in seconds =    17614.2949    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 34 s
+ We have done    83.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        16800
+ Time:   0.236984998      seconds
+ Elapsed time in seconds =    14796.644828007000     
+ Elapsed time in hh:mm:ss =      4 h 06 m 36 s
+ Mean elapsed time per time step in seconds =   0.880752683    
+ Max norm displacement vector U in all slices (m) =    9.12699222E-11
+ Time steps done =        16800  out of        20000
+ Time steps remaining =         3200
+ Estimated remaining time in seconds =    2818.40845    
+ Estimated remaining time in hh:mm:ss =      0 h 46 m 58 s
+ Estimated total run time in seconds =    17615.0527    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 35 s
+ We have done    84.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        16900
+ Time:   0.238484994      seconds
+ Elapsed time in seconds =    14884.654014010001     
+ Elapsed time in hh:mm:ss =      4 h 08 m 04 s
+ Mean elapsed time per time step in seconds =   0.880748749    
+ Max norm displacement vector U in all slices (m) =    9.07950659E-11
+ Time steps done =        16900  out of        20000
+ Time steps remaining =         3100
+ Estimated remaining time in seconds =    2730.32104    
+ Estimated remaining time in hh:mm:ss =      0 h 45 m 30 s
+ Estimated total run time in seconds =    17614.9746    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 34 s
+ We have done    84.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        17000
+ Time:   0.239985004      seconds
+ Elapsed time in seconds =    14972.799669025000     
+ Elapsed time in hh:mm:ss =      4 h 09 m 32 s
+ Mean elapsed time per time step in seconds =   0.880752921    
+ Max norm displacement vector U in all slices (m) =    9.00710270E-11
+ Time steps done =        17000  out of        20000
+ Time steps remaining =         3000
+ Estimated remaining time in seconds =    2642.25879    
+ Estimated remaining time in hh:mm:ss =      0 h 44 m 02 s
+ Estimated total run time in seconds =    17615.0586    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 35 s
+ We have done    85.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        17100
+ Time:   0.241485000      seconds
+ Elapsed time in seconds =    15060.412907092001     
+ Elapsed time in hh:mm:ss =      4 h 11 m 00 s
+ Mean elapsed time per time step in seconds =   0.880725920    
+ Max norm displacement vector U in all slices (m) =    8.81384687E-11
+ Time steps done =        17100  out of        20000
+ Time steps remaining =         2900
+ Estimated remaining time in seconds =    2554.10522    
+ Estimated remaining time in hh:mm:ss =      0 h 42 m 34 s
+ Estimated total run time in seconds =    17614.5176    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 34 s
+ We have done    85.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        17200
+ Time:   0.242984995      seconds
+ Elapsed time in seconds =    15147.915587697000     
+ Elapsed time in hh:mm:ss =      4 h 12 m 27 s
+ Mean elapsed time per time step in seconds =   0.880692780    
+ Max norm displacement vector U in all slices (m) =    8.54313079E-11
+ Time steps done =        17200  out of        20000
+ Time steps remaining =         2800
+ Estimated remaining time in seconds =    2465.93970    
+ Estimated remaining time in hh:mm:ss =      0 h 41 m 05 s
+ Estimated total run time in seconds =    17613.8555    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    86.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        17300
+ Time:   0.244485006      seconds
+ Elapsed time in seconds =    15235.229873059001     
+ Elapsed time in hh:mm:ss =      4 h 13 m 55 s
+ Mean elapsed time per time step in seconds =   0.880649149    
+ Max norm displacement vector U in all slices (m) =    8.27522911E-11
+ Time steps done =        17300  out of        20000
+ Time steps remaining =         2700
+ Estimated remaining time in seconds =    2377.75269    
+ Estimated remaining time in hh:mm:ss =      0 h 39 m 37 s
+ Estimated total run time in seconds =    17612.9824    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 32 s
+ We have done    86.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        17400
+ Time:   0.245985001      seconds
+ Elapsed time in seconds =    15325.327590780000     
+ Elapsed time in hh:mm:ss =      4 h 15 m 25 s
+ Mean elapsed time per time step in seconds =   0.880765975    
+ Max norm displacement vector U in all slices (m) =    7.95016900E-11
+ Time steps done =        17400  out of        20000
+ Time steps remaining =         2600
+ Estimated remaining time in seconds =    2289.99146    
+ Estimated remaining time in hh:mm:ss =      0 h 38 m 09 s
+ Estimated total run time in seconds =    17615.3184    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 35 s
+ We have done    87.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        17500
+ Time:   0.247484997      seconds
+ Elapsed time in seconds =    15413.718072982001     
+ Elapsed time in hh:mm:ss =      4 h 16 m 53 s
+ Mean elapsed time per time step in seconds =   0.880783916    
+ Max norm displacement vector U in all slices (m) =    7.81311474E-11
+ Time steps done =        17500  out of        20000
+ Time steps remaining =         2500
+ Estimated remaining time in seconds =    2201.95972    
+ Estimated remaining time in hh:mm:ss =      0 h 36 m 41 s
+ Estimated total run time in seconds =    17615.6777    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 35 s
+ We have done    87.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        17600
+ Time:   0.248985007      seconds
+ Elapsed time in seconds =    15503.522386978000     
+ Elapsed time in hh:mm:ss =      4 h 18 m 23 s
+ Mean elapsed time per time step in seconds =   0.880881965    
+ Max norm displacement vector U in all slices (m) =    7.69454361E-11
+ Time steps done =        17600  out of        20000
+ Time steps remaining =         2400
+ Estimated remaining time in seconds =    2114.11670    
+ Estimated remaining time in hh:mm:ss =      0 h 35 m 14 s
+ Estimated total run time in seconds =    17617.6387    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    88.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        17700
+ Time:   0.250485003      seconds
+ Elapsed time in seconds =    15590.687922036001     
+ Elapsed time in hh:mm:ss =      4 h 19 m 50 s
+ Mean elapsed time per time step in seconds =   0.880829811    
+ Max norm displacement vector U in all slices (m) =    7.54763960E-11
+ Time steps done =        17700  out of        20000
+ Time steps remaining =         2300
+ Estimated remaining time in seconds =    2025.90857    
+ Estimated remaining time in hh:mm:ss =      0 h 33 m 45 s
+ Estimated total run time in seconds =    17616.5957    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    88.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        17800
+ Time:   0.251985013      seconds
+ Elapsed time in seconds =    15678.491437225000     
+ Elapsed time in hh:mm:ss =      4 h 21 m 18 s
+ Mean elapsed time per time step in seconds =   0.880814135    
+ Max norm displacement vector U in all slices (m) =    7.36976730E-11
+ Time steps done =        17800  out of        20000
+ Time steps remaining =         2200
+ Estimated remaining time in seconds =    1937.79102    
+ Estimated remaining time in hh:mm:ss =      0 h 32 m 17 s
+ Estimated total run time in seconds =    17616.2832    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    89.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        17900
+ Time:   0.253484994      seconds
+ Elapsed time in seconds =    15766.870697591001     
+ Elapsed time in hh:mm:ss =      4 h 22 m 46 s
+ Mean elapsed time per time step in seconds =   0.880830765    
+ Max norm displacement vector U in all slices (m) =    7.25325355E-11
+ Time steps done =        17900  out of        20000
+ Time steps remaining =         2100
+ Estimated remaining time in seconds =    1849.74463    
+ Estimated remaining time in hh:mm:ss =      0 h 30 m 49 s
+ Estimated total run time in seconds =    17616.6152    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    89.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        18000
+ Time:   0.254985005      seconds
+ Elapsed time in seconds =    15855.427015340001     
+ Elapsed time in hh:mm:ss =      4 h 24 m 15 s
+ Mean elapsed time per time step in seconds =   0.880857050    
+ Max norm displacement vector U in all slices (m) =    7.13683834E-11
+ Time steps done =        18000  out of        20000
+ Time steps remaining =         2000
+ Estimated remaining time in seconds =    1761.71411    
+ Estimated remaining time in hh:mm:ss =      0 h 29 m 21 s
+ Estimated total run time in seconds =    17617.1406    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    90.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+
+ Total number of time steps done:        18000
+ Writing the seismograms in parallel took   0.204728261      seconds
+
+ Time step #        18100
+ Time:   0.256484985      seconds
+ Elapsed time in seconds =    15943.995458523001     
+ Elapsed time in hh:mm:ss =      4 h 25 m 43 s
+ Mean elapsed time per time step in seconds =   0.880883753    
+ Max norm displacement vector U in all slices (m) =    7.12428797E-11
+ Time steps done =        18100  out of        20000
+ Time steps remaining =         1900
+ Estimated remaining time in seconds =    1673.67908    
+ Estimated remaining time in hh:mm:ss =      0 h 27 m 53 s
+ Estimated total run time in seconds =    17617.6738    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    90.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        18200
+ Time:   0.257984996      seconds
+ Elapsed time in seconds =    16032.630990870000     
+ Elapsed time in hh:mm:ss =      4 h 27 m 12 s
+ Mean elapsed time per time step in seconds =   0.880913794    
+ Max norm displacement vector U in all slices (m) =    7.13699794E-11
+ Time steps done =        18200  out of        20000
+ Time steps remaining =         1800
+ Estimated remaining time in seconds =    1585.64478    
+ Estimated remaining time in hh:mm:ss =      0 h 26 m 25 s
+ Estimated total run time in seconds =    17618.2754    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 38 s
+ We have done    91.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        18300
+ Time:   0.259485006      seconds
+ Elapsed time in seconds =    16119.946506710001     
+ Elapsed time in hh:mm:ss =      4 h 28 m 39 s
+ Mean elapsed time per time step in seconds =   0.880871415    
+ Max norm displacement vector U in all slices (m) =    7.13916148E-11
+ Time steps done =        18300  out of        20000
+ Time steps remaining =         1700
+ Estimated remaining time in seconds =    1497.48132    
+ Estimated remaining time in hh:mm:ss =      0 h 24 m 57 s
+ Estimated total run time in seconds =    17617.4277    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    91.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        18400
+ Time:   0.260984987      seconds
+ Elapsed time in seconds =    16208.478027994001     
+ Elapsed time in hh:mm:ss =      4 h 30 m 08 s
+ Mean elapsed time per time step in seconds =   0.880895555    
+ Max norm displacement vector U in all slices (m) =    7.14205778E-11
+ Time steps done =        18400  out of        20000
+ Time steps remaining =         1600
+ Estimated remaining time in seconds =    1409.43286    
+ Estimated remaining time in hh:mm:ss =      0 h 23 m 29 s
+ Estimated total run time in seconds =    17617.9102    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    92.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        18500
+ Time:   0.262484998      seconds
+ Elapsed time in seconds =    16295.766835548000     
+ Elapsed time in hh:mm:ss =      4 h 31 m 35 s
+ Mean elapsed time per time step in seconds =   0.880852282    
+ Max norm displacement vector U in all slices (m) =    7.18667556E-11
+ Time steps done =        18500  out of        20000
+ Time steps remaining =         1500
+ Estimated remaining time in seconds =    1321.27844    
+ Estimated remaining time in hh:mm:ss =      0 h 22 m 01 s
+ Estimated total run time in seconds =    17617.0449    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 37 s
+ We have done    92.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        18600
+ Time:   0.263985008      seconds
+ Elapsed time in seconds =    16383.488818768999     
+ Elapsed time in hh:mm:ss =      4 h 33 m 03 s
+ Mean elapsed time per time step in seconds =   0.880832732    
+ Max norm displacement vector U in all slices (m) =    7.19707835E-11
+ Time steps done =        18600  out of        20000
+ Time steps remaining =         1400
+ Estimated remaining time in seconds =    1233.16577    
+ Estimated remaining time in hh:mm:ss =      0 h 20 m 33 s
+ Estimated total run time in seconds =    17616.6543    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    93.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        18700
+ Time:   0.265484989      seconds
+ Elapsed time in seconds =    16471.580053480000     
+ Elapsed time in hh:mm:ss =      4 h 34 m 31 s
+ Mean elapsed time per time step in seconds =   0.880833149    
+ Max norm displacement vector U in all slices (m) =    7.18870449E-11
+ Time steps done =        18700  out of        20000
+ Time steps remaining =         1300
+ Estimated remaining time in seconds =    1145.08313    
+ Estimated remaining time in hh:mm:ss =      0 h 19 m 05 s
+ Estimated total run time in seconds =    17616.6641    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    93.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        18800
+ Time:   0.266984999      seconds
+ Elapsed time in seconds =    16559.294182878999     
+ Elapsed time in hh:mm:ss =      4 h 35 m 59 s
+ Mean elapsed time per time step in seconds =   0.880813539    
+ Max norm displacement vector U in all slices (m) =    7.25164095E-11
+ Time steps done =        18800  out of        20000
+ Time steps remaining =         1200
+ Estimated remaining time in seconds =    1056.97620    
+ Estimated remaining time in hh:mm:ss =      0 h 17 m 36 s
+ Estimated total run time in seconds =    17616.2695    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 36 s
+ We have done    94.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:46
+
+ Time step #        18900
+ Time:   0.268485010      seconds
+ Elapsed time in seconds =    16646.711830580000     
+ Elapsed time in hh:mm:ss =      4 h 37 m 26 s
+ Mean elapsed time per time step in seconds =   0.880778432    
+ Max norm displacement vector U in all slices (m) =    7.31545380E-11
+ Time steps done =        18900  out of        20000
+ Time steps remaining =         1100
+ Estimated remaining time in seconds =    968.856262    
+ Estimated remaining time in hh:mm:ss =      0 h 16 m 08 s
+ Estimated total run time in seconds =    17615.5684    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 35 s
+ We have done    94.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        19000
+ Time:   0.269984990      seconds
+ Elapsed time in seconds =    16734.024150068999     
+ Elapsed time in hh:mm:ss =      4 h 38 m 54 s
+ Mean elapsed time per time step in seconds =   0.880738139    
+ Max norm displacement vector U in all slices (m) =    7.50214127E-11
+ Time steps done =        19000  out of        20000
+ Time steps remaining =         1000
+ Estimated remaining time in seconds =    880.738098    
+ Estimated remaining time in hh:mm:ss =      0 h 14 m 40 s
+ Estimated total run time in seconds =    17614.7617    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 34 s
+ We have done    95.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        19100
+ Time:   0.271485001      seconds
+ Elapsed time in seconds =    16821.269324573001     
+ Elapsed time in hh:mm:ss =      4 h 40 m 21 s
+ Mean elapsed time per time step in seconds =   0.880694747    
+ Max norm displacement vector U in all slices (m) =    7.49622309E-11
+ Time steps done =        19100  out of        20000
+ Time steps remaining =          900
+ Estimated remaining time in seconds =    792.625244    
+ Estimated remaining time in hh:mm:ss =      0 h 13 m 12 s
+ Estimated total run time in seconds =    17613.8945    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    95.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        19200
+ Time:   0.272985011      seconds
+ Elapsed time in seconds =    16908.964152828998     
+ Elapsed time in hh:mm:ss =      4 h 41 m 48 s
+ Mean elapsed time per time step in seconds =   0.880675197    
+ Max norm displacement vector U in all slices (m) =    7.41354478E-11
+ Time steps done =        19200  out of        20000
+ Time steps remaining =          800
+ Estimated remaining time in seconds =    704.540161    
+ Estimated remaining time in hh:mm:ss =      0 h 11 m 44 s
+ Estimated total run time in seconds =    17613.5039    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    96.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        19300
+ Time:   0.274484992      seconds
+ Elapsed time in seconds =    16996.599848114998     
+ Elapsed time in hh:mm:ss =      4 h 43 m 16 s
+ Mean elapsed time per time step in seconds =   0.880652845    
+ Max norm displacement vector U in all slices (m) =    7.40165845E-11
+ Time steps done =        19300  out of        20000
+ Time steps remaining =          700
+ Estimated remaining time in seconds =    616.456970    
+ Estimated remaining time in hh:mm:ss =      0 h 10 m 16 s
+ Estimated total run time in seconds =    17613.0566    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 33 s
+ We have done    96.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        19400
+ Time:   0.275985003      seconds
+ Elapsed time in seconds =    17083.977438071001     
+ Elapsed time in hh:mm:ss =      4 h 44 m 43 s
+ Mean elapsed time per time step in seconds =   0.880617380    
+ Max norm displacement vector U in all slices (m) =    7.26615990E-11
+ Time steps done =        19400  out of        20000
+ Time steps remaining =          600
+ Estimated remaining time in seconds =    528.370422    
+ Estimated remaining time in hh:mm:ss =      0 h 08 m 48 s
+ Estimated total run time in seconds =    17612.3477    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 32 s
+ We have done    97.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        19500
+ Time:   0.277485013      seconds
+ Elapsed time in seconds =    17171.056221839001     
+ Elapsed time in hh:mm:ss =      4 h 46 m 11 s
+ Mean elapsed time per time step in seconds =   0.880567014    
+ Max norm displacement vector U in all slices (m) =    7.10759646E-11
+ Time steps done =        19500  out of        20000
+ Time steps remaining =          500
+ Estimated remaining time in seconds =    440.283478    
+ Estimated remaining time in hh:mm:ss =      0 h 07 m 20 s
+ Estimated total run time in seconds =    17611.3398    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 31 s
+ We have done    97.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        19600
+ Time:   0.278984994      seconds
+ Elapsed time in seconds =    17258.393347570000     
+ Elapsed time in hh:mm:ss =      4 h 47 m 38 s
+ Mean elapsed time per time step in seconds =   0.880530298    
+ Max norm displacement vector U in all slices (m) =    6.96695757E-11
+ Time steps done =        19600  out of        20000
+ Time steps remaining =          400
+ Estimated remaining time in seconds =    352.212097    
+ Estimated remaining time in hh:mm:ss =      0 h 05 m 52 s
+ Estimated total run time in seconds =    17610.6055    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    98.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        19700
+ Time:   0.280485004      seconds
+ Elapsed time in seconds =    17345.871559884999     
+ Elapsed time in hh:mm:ss =      4 h 49 m 05 s
+ Mean elapsed time per time step in seconds =   0.880501091    
+ Max norm displacement vector U in all slices (m) =    6.82823104E-11
+ Time steps done =        19700  out of        20000
+ Time steps remaining =          300
+ Estimated remaining time in seconds =    264.150330    
+ Estimated remaining time in hh:mm:ss =      0 h 04 m 24 s
+ Estimated total run time in seconds =    17610.0215    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    98.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        19800
+ Time:   0.281985015      seconds
+ Elapsed time in seconds =    17434.269239145000     
+ Elapsed time in hh:mm:ss =      4 h 50 m 34 s
+ Mean elapsed time per time step in seconds =   0.880518675    
+ Max norm displacement vector U in all slices (m) =    6.72640624E-11
+ Time steps done =        19800  out of        20000
+ Time steps remaining =          200
+ Estimated remaining time in seconds =    176.103729    
+ Estimated remaining time in hh:mm:ss =      0 h 02 m 56 s
+ Estimated total run time in seconds =    17610.3730    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 30 s
+ We have done    99.0000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        19900
+ Time:   0.283484995      seconds
+ Elapsed time in seconds =    17521.712126234997     
+ Elapsed time in hh:mm:ss =      4 h 52 m 01 s
+ Mean elapsed time per time step in seconds =   0.880488038    
+ Max norm displacement vector U in all slices (m) =    6.62789337E-11
+ Time steps done =        19900  out of        20000
+ Time steps remaining =          100
+ Estimated remaining time in seconds =    88.0488052    
+ Estimated remaining time in hh:mm:ss =      0 h 01 m 28 s
+ Estimated total run time in seconds =    17609.7617    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 29 s
+ We have done    99.5000000     % of that
+ The run will finish approximately on (in local time): Wed Feb 02, 2022 16:45
+
+ Time step #        20000
+ Time:   0.284985006      seconds
+ Elapsed time in seconds =    17609.038009320000     
+ Elapsed time in hh:mm:ss =      4 h 53 m 29 s
+ Mean elapsed time per time step in seconds =   0.880451918    
+ Max norm displacement vector U in all slices (m) =    6.58448782E-11
+ Time steps done =        20000  out of        20000
+ Time steps remaining =            0
+ Estimated remaining time in seconds =    0.00000000    
+ Estimated remaining time in hh:mm:ss =      0 h 00 m 00 s
+ Estimated total run time in seconds =    17609.0371    
+ Estimated total run time in hh:mm:ss =      4 h 53 m 29 s
+ We have done    100.000000     % of that
+
+
+ Total number of time steps done:        20000
+ Writing the seismograms in parallel took    8.19766056E-03  seconds
+
+ Time loop finished. Timing info:
+ Total elapsed time in seconds =    17609.862755784998     
+ Total elapsed time in hh:mm:ss =      4 h 53 m 29 s
+
+ End of the simulation
+

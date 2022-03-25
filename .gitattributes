@@ -1,0 +1,2 @@
+# Don't count this 3rd party library towards github language stats
+src/reflectivityCPP/eigen/** linguist-vendored
