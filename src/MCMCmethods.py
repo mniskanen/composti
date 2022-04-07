@@ -234,6 +234,7 @@ class RJMCMCsampler():
         assert np.abs(self.proposal_type_select[-1] - 1.0) < 1e-15, \
             "Probability of performing a proposal has to be one"
         
+        # The following are in terms of iteration numbers
         self.start_updating_covariance = 500
         self.start_updating_cholesky   = 1000
         self.cholesky_update_frequency = 100
@@ -715,7 +716,7 @@ class RJMCMCsampler():
 @dataclass
 class MCMCState:
     """ Class for storing a single state (step) of an MCMC chain. Used to more easily swap states
-    when using parallel temperging. """
+    when using parallel tempering. """
     k: int
     layer_params: np.ndarray
     src_params: np.ndarray

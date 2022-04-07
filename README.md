@@ -65,7 +65,7 @@ First make sure you have a C++ compiler (such as gcc) installed. One way to inst
 	conda install scipy
 	```
 
-- Compile the forward solver. Navigate to folder /X/src/reflectivityCPP and run
+- Compile the forward solver. Navigate to folder /composti/src/reflectivityCPP and run
 `python setup.py build_ext --inplace`
 
 - If the compilation succeeded, run `test_reflectivity_implementations.py` in the src/-folder, which should plot seismograms computed with the reflectivity method and compare them to a reference solution. You're now ready to go!
