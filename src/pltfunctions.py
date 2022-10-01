@@ -91,8 +91,8 @@ def plot_chains(sampler, burn_in=0):
         n_min + sampler.master_model_iter[burn_in:, 0],
         bins=np.arange(
             n_min,
-            sampler.posterior_cls.priormodel.n_layers_max + 1
-            ) + 0.5,
+            sampler.posterior_cls.priormodel.n_layers_max + 2
+            ) - 0.5,
         edgecolor='white',
         linewidth=2,
         density=True
