@@ -307,6 +307,15 @@ def posterior_predictive_distribution(sampler, burn_in=0):
             alpha=0.3
             )
     
+    mean_prediction = np.zeros((2 * (n_f_plot - 1), n_rec))
+    for i in range(n_rec):
+        mean_prediction[:, i] = np.mean(u_z_samples[:, :, i], axis=0)
+    
+    data_errors = (sampler.posterior_cls.measurement.u_z - mean_prediction).flatten()
+    plt.figure()
+    plt.hist(data_errors, 50, density=False)
+    plt.title('Data error distribution')
+    
     plt.show(block=False)
 
 
