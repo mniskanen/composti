@@ -42,18 +42,22 @@ def plot_chains(sampler, burn_in=0):
     first_k_after_burn_in = np.argmax(sampler.master_model_iter[burn_in:, 0] == k)
     k_start_iter = sampler.master_model_iter[burn_in + first_k_after_burn_in, 1]
     
-    minPost = np.min(sampler.log_posts[int(0.01 * n_iter):])
-    maxPost = np.max(sampler.log_posts[int(0.01 * n_iter):])
-    minsigma = np.min(sampler.noise_samples[int(0.01 * n_iter):])
-    maxsigma = np.max(sampler.noise_samples[int(0.01 * n_iter):])
-    min_src = np.min(sampler.source_samples[int(0.01 * n_iter):])
-    max_src = np.max(sampler.source_samples[int(0.01 * n_iter):])
+    # Can remove the first iterations to show the rest better
+    start_iteration = int(0.05 * n_iter)  # Choose percentage of iterations to skip
+    iters_to_plot = np.arange(start_iteration, n_iter)
+    
+    minPost = np.min(sampler.log_posts[iters_to_plot])
+    maxPost = np.max(sampler.log_posts[iters_to_plot])
+    minsigma = np.min(sampler.noise_samples[iters_to_plot])
+    maxsigma = np.max(sampler.noise_samples[iters_to_plot])
+    min_src = np.min(sampler.source_samples[iters_to_plot])
+    max_src = np.max(sampler.source_samples[iters_to_plot])
     
     mrkrsize = 0.5
     
     plt.figure(num=1); plt.clf()
     plt.subplot(3,4,1)
-    plt.plot(sampler.log_posts[int(0.01 * n_iter):],'.', markersize=mrkrsize)
+    plt.plot(iters_to_plot, sampler.log_posts[iters_to_plot],'.', markersize=mrkrsize)
     plt.plot(np.array([burn_in, burn_in]), np.array([minPost, maxPost]), 'k-', linewidth=2)
     plt.title("Log posterior")
     
@@ -114,13 +118,13 @@ def plot_chains(sampler, burn_in=0):
     plt.ylabel(par_units[3])
     
     plt.subplot(3,4,9)
-    plt.plot(sampler.noise_samples[int(0.01 * n_iter):], '.', markersize=mrkrsize)
+    plt.plot(iters_to_plot, sampler.noise_samples[iters_to_plot], '.', markersize=mrkrsize)
     plt.plot(np.array([burn_in, burn_in]), np.array([minsigma, maxsigma]), 'k-', linewidth=2)
     plt.title(par_names[6])
     plt.ylabel(par_units[6])
     
     plt.subplot(3,4,10)
-    plt.plot(sampler.source_samples[int(0.01 * n_iter):], '.', markersize=mrkrsize)
+    plt.plot(iters_to_plot, sampler.source_samples[iters_to_plot], '.', markersize=mrkrsize)
     plt.plot(np.array([burn_in, burn_in]), np.array([min_src, max_src]), 'k-', linewidth=2)
     plt.title(par_names[7])
     plt.ylabel(par_units[7])
