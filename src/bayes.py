@@ -54,7 +54,7 @@ class Prior():
         self.layer_bounds[2, :] = [self.cS_min, self.cS_max]  # cS
         self.layer_bounds[3, :] = [2, 500]                    # QS
         self.layer_bounds[4, :] = [1000, 3500]                # rho
-        self.layer_bounds[5, :] = [0.5, 50]                   # d
+        self.layer_bounds[5, :] = [0.0, 50]                   # d
         
         self.par_names.extend(['P-wave speed',
                                'P-wave Q value',
