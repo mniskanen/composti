@@ -34,7 +34,7 @@ def plot_chains(sampler, burn_in=0):
     par_names = sampler.posterior_cls.priormodel.par_names
     par_units = sampler.posterior_cls.priormodel.par_units
     
-    k = stats.mode(sampler.master_model_iter[burn_in:, 0])[0][0]
+    k = stats.mode(sampler.master_model_iter[burn_in:, 0])[0]
     maxk = np.max(sampler.master_model_iter[:, 0])
     n_iter = sampler.masteriter
     
