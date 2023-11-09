@@ -70,6 +70,10 @@ First make sure you have a C++ compiler (such as gcc) installed. One way to inst
 
 - If the compilation succeeded, run `test_reflectivity_implementations.py` in the src/-folder, which should plot seismograms computed with the reflectivity method and compare them to a reference solution. You're now ready to go!
 
+### Mac
+
+See the file `installing_on_Mac.md`
+
 
 ## Using the transdimensional MCMC sampler
 
