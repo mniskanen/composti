@@ -21,11 +21,19 @@ extensions = [
             eigency.get_includes(include_eigen=False),  # Include my own Eigen directories
         language="c++",                                 # Generate and compile C++ code
         extra_compile_args=[
-            "-std=c++17",  # Use a newer standard (C++17), C++98 seems to be used without this
+            # These options work for most compilers:
+            "-std=c++17",
             "-Ofast",
             "-fopenmp"
+            
+            # If using the MSVC compiler, uncomment the three lines below
+            # and comment out the corresponding three lines above:
+            #"-std:c++17",
+            #"-O2",
+            #"-openmp:llvm",
             ],
         extra_link_args=["-fopenmp"],
+        #define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
     )
     ]
 

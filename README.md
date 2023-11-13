@@ -34,39 +34,61 @@ The subsurface is assumed to consist of an unknown number of homogeneous planar 
 
 ### Windows
 
-First make sure you have a C++ compiler (such as gcc) installed. One way to install a compiler, assuming you are using [Anaconda](https://www.anaconda.com/) with Windows 10, is detailed below.
+Instructions here are tested with Windows 11 for Python using the conda package manager (install [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/) and you're set). You will also need a C++ compiler. In Windows, the easiest way is probably to use the Microsoft Visual C++ (MSVC) compiler, but below you'll also find instructions on using gcc from MinGW. Choose either option.
 
+| Install MSVC
+-
+|
+- Download [Visual Studio](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170) and select the installation for __Desktop development with C++__
+- That should be it.
+
+-OR-
+
+| Install MinGW
+-
+|
 - Install [MSYS2](https://www.msys2.org/) (conda has gcc available but it is way out of date).
-	- Download and run the installer msys2-x86_64-yyyymmdd.exe
-	- Run msys2.exe in the install folder and sync the package database and upgrade all packages by typing
-	```bash
+- Download and run the installer msys2-x86_64-yyyymmdd.exe
+- Run msys2.exe in the install folder and sync the package database and upgrade all packages by typing
+```bash
 	pacman -Syu
 	pacman -Su
-	```
-	- Then, close msys2.exe, run mingw64.exe and type (select all by pressing enter when prompted)
-	```
-	pacman -S base-devel mingw-w64-x86_64-toolchain  # Installs coding tools
-	```
-	- Now you should have gcc.exe (among others) available in C:\msys64\mingw64\bin.
-	- Then you have to add the mingw executables to the environment variables: In the Windows start menu type `path` and select ''Edit the system environment variables''. Then go to Environment variables and in the box 'System variables' select the variable 'Path'. Click Edit -> New and write the path to the \bin-folder of your installation, which if you installed it in the default location should be `C:\msys64\mingw64\bin`.
+```
+- Then, close msys2.exe, run mingw64.exe and install coding tools by typing (select all by pressing enter when prompted)
+```
+	pacman -S base-devel mingw-w64-x86_64-toolchain
+```
+- Now you should have gcc.exe (among others) available in C:\msys64\mingw64\bin.
+- Then you have to add the mingw executables to the environment variables: In the Windows start menu type `path` and select ''Edit the system environment variables''. Then go to Environment variables and in the box 'System variables' select the variable 'Path'. Click Edit -> New and write the path to the \bin-folder of your installation, which if you installed it in the default location should be `C:\msys64\mingw64\bin`.
 
-- Create a new conda environment and install required packages:
-	- In the anaconda prompt write
-	```bash
+---
+Now you should have a compiler installed. Next, tell COMPOSTI to use the right compiler:
+- In `composti\src\reflectivityCPP\` open `setup.cfg` and uncomment the line with the compiler you have installed.
+- In the same folder, open `setup.py` and make sure the correct three lines are uncommented under `extra_compile_args` (see the comments there).
+
+Then, create a new conda environment and install required packages:
+- Open the anaconda prompt from Miniconda3 and write
+	```
 	conda create --name py39 python=3.9
 	conda activate py39
 	conda install git
 	git clone https://github.com/mniskanen/composti.git
 	pip install cython
 	conda install libpython
+	conda install m2w64-binutils
 	conda install numpy
 	pip install eigency
 	conda install matplotlib
 	conda install scipy
 	```
+- If you used MinGW, you may need to also do
+	```
+	conda install m2w64-binutils
+	```
 
 - Compile the forward solver. Navigate to folder /composti/src/reflectivityCPP and run
 `python setup.py build_ext --inplace`
+- Again, if using MinGW, you may need to add the option `-DMS_WIN64` at the end of the previous line.
 
 - If the compilation succeeded, run `test_reflectivity_implementations.py` in the src/-folder, which should plot seismograms computed with the reflectivity method and compare them to a reference solution. You're now ready to go!
 
