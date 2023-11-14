@@ -1,18 +1,10 @@
-#define EIGEN_STACK_ALLOCATION_LIMIT 10000000000000
 #define _USE_MATH_DEFINES
 
 #include "reflectivity_functions_CPP.h"
-//#include <iostream>
-//#include <iomanip>
 #include <cmath>
-//#include <chrono>
 #include <Eigen/StdVector>
 //#include <boost/math/special_functions/bessel.hpp>
-//#include <omp.h>
-//#include <string>
-//#include <sstream>
 #include <cstdint>
-//#include<omp.h>
 
 using namespace std;
 using namespace Eigen;
@@ -39,9 +31,9 @@ void compute_displ(Map<MatrixXd>& layers, Map<VectorXd>& freq, Map<VectorXcd>& s
 	VectorXd rhos = layers.col(4);
 	VectorXd d = layers.col(5);
 
-	int nLayers = alphas.size();
-	int nF = freq.size();
-	int nRec = receivers.size();
+	int nLayers = int(alphas.size());
+	int nF = int(freq.size());
+	int nRec = int(receivers.size());
 
 	// Variable step size for two zones:
 	double u1 = 0.;
@@ -51,8 +43,8 @@ void compute_displ(Map<MatrixXd>& layers, Map<VectorXd>& freq, Map<VectorXcd>& s
 	double du_s = 0.05 / (freq.maxCoeff() * receivers.maxCoeff());
 	double du_l = 1. * du_s;
 
-	int nu_s = round((u2 - u1) / du_s) + 500;
-	int nu_l = round((u3 - u2) / du_l) + 500;
+	int nu_s = int(round((u2 - u1) / du_s) + 500);
+	int nu_l = int(round((u3 - u2) / du_l) + 500);
 	int nU = nu_s + nu_l;
 
 	ArrayXd u = ArrayXd::Zero(nU);
@@ -142,7 +134,7 @@ void compute_displ(Map<MatrixXd>& layers, Map<VectorXd>& freq, Map<VectorXcd>& s
 
 		// Precompute stuff for Rminus
 		// start with ii = n - 1
-		for (int kk = nLayers - 1 - 1; kk > -1; kk--)
+		for (Index kk = nLayers - 1 - 1; kk > -1; kk--)
 		{
 			computeRT(a(ii, kk), b(ii, kk), rhos(kk), vS(kk), a(ii, kk + 1), b(ii, kk + 1), rhos(kk + 1), vS(kk + 1), u(ii),
 				Ru[ii][kk], Tu[ii][kk], Rd[ii][kk], Td[ii][kk]);
@@ -462,9 +454,9 @@ void compute_displ_Levin(Map<MatrixXd>& layers, Map<VectorXd>& freq, Map<VectorX
 	VectorXd rhos = layers.col(4);
 	VectorXd d = layers.col(5);
 
-	int nLayers = alphas.size();
-	int nF = freq.size();
-	int nRec = receivers.size();
+	int nLayers = int(alphas.size());
+	int nF = int(freq.size());
+	int nRec = int(receivers.size());
 
 	// Two subinterval 'zones':
 	double u1 = 1e-3 / alphas.maxCoeff();
@@ -497,7 +489,7 @@ void compute_displ_Levin(Map<MatrixXd>& layers, Map<VectorXd>& freq, Map<VectorX
 			* cos((2. * ArrayXd::LinSpaced(n, 0., n - 1)) / (2 * (n - 1)) * M_PI)).reverse();
 	}
 
-	int nU = u.size();
+	int nU = int(u.size());
 
 	// Create the slowness tapering window
 	double u_taper = u2;  // start the tapering from this value onwards
@@ -743,7 +735,7 @@ void compute_displ_Levin(Map<MatrixXd>& layers, Map<VectorXd>& freq, Map<VectorX
 
 void basisfunctions(ArrayXd u, MatrixXd& basis_out, MatrixXd& basisp_out)
 {
-	int n = u.size();  // this will tell us the size of the basis and basisp matrices too
+	int n = int(u.size());  // this will tell us the size of the basis and basisp matrices too
 	double d = u(0) + 0.5 * (u(n - 1) - u(0));  // midpoint
 	double d0 = abs(u - d).maxCoeff();  // to normalise bases if wanted
 
@@ -761,7 +753,7 @@ void basisfunctions(ArrayXd u, MatrixXd& basis_out, MatrixXd& basisp_out)
 
 void basisfunctions_radial(ArrayXd u, MatrixXd& basis_out, MatrixXd& basisp_out)
 {
-	int n = u.size();  // this will tell us the size of the basis and basisp matrices too
+	int n = int(u.size());  // this will tell us the size of the basis and basisp matrices too
 	double d = u(0) + 0.5 * (u(n - 1) - u(0));  // midpoint
 	double d0 = abs(u - d).maxCoeff();
 	double eps = 1 / d0;
@@ -791,9 +783,9 @@ uintptr_t precompute_Levin_basis(Map<VectorXd>& freq, Map<VectorXd>& receivers, 
 	* but since this function is only run once per MCMC run it doesn't matter.
 	*/
 
-	int nF = freq.size();
-	int nRec = receivers.size();
-	int nU = u.size();
+	int nF = int(freq.size());
+	int nRec = int(receivers.size());
+	int nU = int(u.size());
 	int Q = (nU - 1) / (n_colloc - 1);
 
 	ArrayXd u_subintv = ArrayXd::Zero(Q + 1);
@@ -894,10 +886,10 @@ void compute_displ_Levin_precomp(uintptr_t Levin_basis_address, Map<ArrayXd>& u,
 	VectorXd rhos = layers.col(4);
 	VectorXd d = layers.col(5);
 
-	int nLayers = alphas.size();
-	int nF = freq.size();
-	int nRec = receivers.size();
-	int nU = u.size();
+	int nLayers = int(alphas.size());
+	int nF = int(freq.size());
+	int nRec = int(receivers.size());
+	int nU = int(u.size());
 	int Q = (nU - 1) / (n - 1);
 
 	ArrayXd u_subintv = ArrayXd::Zero(Q + 1);
