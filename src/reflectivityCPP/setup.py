@@ -30,7 +30,7 @@ extensions = [
             # and comment out the corresponding three lines above:
             #"-std:c++17",
             #"-O2",
-            #"-openmp:llvm",
+            #"-openmp",
             ],
         extra_link_args=["-fopenmp"],
         #define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
