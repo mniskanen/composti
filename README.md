@@ -36,17 +36,15 @@ The subsurface is assumed to consist of an unknown number of homogeneous planar 
 
 Instructions here are tested with Windows 11 for Python using the conda package manager (install [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/) and you're set). You will also need a C++ compiler. In Windows, the easiest way is probably to use the Microsoft Visual C++ (MSVC) compiler, but below you'll also find instructions on using gcc from MinGW. Choose either option.
 
-| Install MSVC
+#### | Install MSVC
 -
-|
 - Download [Visual Studio](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170) and select the installation for __Desktop development with C++__
 - That should be it.
 
 -OR-
 
-| Install MinGW
+#### | Install MinGW
 -
-|
 - Install [MSYS2](https://www.msys2.org/) (conda has gcc available but it is way out of date).
 - Download and run the installer msys2-x86_64-yyyymmdd.exe
 - Run msys2.exe in the install folder and sync the package database and upgrade all packages by typing
