@@ -71,7 +71,6 @@ Then, create a new conda environment and install required packages:
 	git clone https://github.com/mniskanen/composti.git
 	pip install cython
 	conda install libpython
-	conda install m2w64-binutils
 	conda install numpy
 	pip install eigency
 	conda install matplotlib
